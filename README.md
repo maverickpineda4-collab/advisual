@@ -55,7 +55,7 @@ Cada vez que guardes un cambio en VS Code, la página se recarga sola (hot reloa
 |---|---|---|
 | Número de WhatsApp | `index.html` y `js/main.js` | ✅ Configurado: +56 9 5333 4461 |
 | Instagram / YouTube | `index.html` (footer) | ✅ @advisualcl / @AdVisual-h1b |
-| Correo de contacto | `index.html` (sección contacto) | ⏳ Pendiente (actual: contacto@advisual.cl) |
+| Correo de contacto | `index.html` (sección contacto) | ✅ Configurado: advisualcl@gmail.com |
 | Colores de marca | `css/styles.css` (arriba, en `:root`) | Edita `--acento` y `--acento-2` si quieres otros |
 | Cifras de los contadores | `index.html` (sección cifras) | Edita los `data-meta` con tus números reales |
 | Formulario por correo | `index.html` (form) | ⏳ Reemplaza `TU_ID` (créalo gratis en formspree.io) |
