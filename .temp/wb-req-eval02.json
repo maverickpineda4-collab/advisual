@@ -1,0 +1,1 @@
+{"action":"evaluate","args":{"code":"(()=>{const els=[...document.querySelectorAll('body *')].filter(e=>e.scrollHeight>e.clientHeight+50); els.forEach(e=>e.scrollTop=e.scrollHeight); return new Promise(r=>setTimeout(()=>{const t=document.body.innerText; const i=t.lastIndexOf('Deploying'); r(t.slice(i,i+2500));},800));})()"},"session":"advisual-deploy"}

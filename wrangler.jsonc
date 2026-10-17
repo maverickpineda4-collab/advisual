@@ -1,0 +1,12 @@
+// ══════════════════════════════════════════════════════════════
+// Configuración de Wrangler (la herramienta de Cloudflare)
+// Le dice a Cloudflare QUÉ publicar: los archivos estáticos
+// que Vite genera en la carpeta dist/
+// ══════════════════════════════════════════════════════════════
+{
+    "name": "advisual",                  // Nombre del proyecto en Cloudflare
+    "compatibility_date": "2026-01-01",  // Versión de la plataforma a usar
+    "assets": {
+        "directory": "./dist"            // Carpeta que se publica (el build de Vite)
+    }
+}
