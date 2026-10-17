@@ -233,16 +233,36 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 .hero__contenido { text-align: center; padding-top: 80px; }
 
-.hero__badge {
-    display: inline-block;
-    padding: 8px 20px;
-    border: 1px solid var(--borde);
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    font-size: 0.85rem;
-    color: var(--texto-suave);
-    margin-bottom: 28px;
+/* Logo grande de la portada: la estrella visual de la página */
+.hero__logo {
+    width: clamp(240px, 42vw, 420px); /* Grande pero fluido: se adapta a cada pantalla */
+    margin: 0 auto 30px;              /* Centrado con aire debajo */
+    filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); /* Sombra para levantarlo del video */
+}
+
+/* Etiqueta "PRODUCTORA AUDIOVISUAL": texto espaciado con líneas finas a los lados */
+.hero__etiqueta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: var(--acento-2);
+    text-transform: uppercase;
+    letter-spacing: 4px;              /* Letras bien separadas = elegancia */
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 26px;
+}
+/* Las dos líneas decorativas que flanquean el texto */
+.hero__etiqueta::before,
+.hero__etiqueta::after {
+    content: "";
+    width: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--acento-2)); /* Se desvanece hacia afuera */
+}
+.hero__etiqueta::after {
+    background: linear-gradient(90deg, var(--acento-2), transparent); /* La derecha, en espejo */
 }
 .hero__titulo {
     font-size: clamp(2.6rem, 7vw, 5.2rem); /* Título gigante y fluido */
@@ -335,15 +355,35 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
 }
 .servicio__icono {
-    font-size: 2.2rem;
     width: 64px; height: 64px;
     display: grid;
-    place-items: center;                 /* Centra el emoji dentro del círculo */
+    place-items: center;                 /* Centra el ícono dentro de la caja */
     background: rgba(124, 92, 255, 0.12);
     border: 1px solid rgba(124, 92, 255, 0.3);
     border-radius: 18px;
     margin-bottom: 20px;
+    color: var(--acento-2);              /* Los SVG usan stroke="currentColor" = toman este cian */
+    transition: var(--transicion);
 }
+.servicio__icono svg { width: 30px; height: 30px; }
+/* Al pasar el mouse, la caja del ícono se "enciende" con el degradado de marca */
+.servicio:hover .servicio__icono {
+    background: var(--degradado);
+    border-color: transparent;
+    color: #ffffff;
+}
+/* Línea degradada que se dibuja arriba de la tarjeta al pasar el mouse */
+.servicio::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--degradado);
+    transform: scaleX(0);                /* Escondida: empieza con ancho 0 */
+    transform-origin: left;              /* Crece desde la izquierda */
+    transition: transform 0.4s ease;
+}
+.servicio:hover::after { transform: scaleX(1); }
 .servicio h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .servicio p { color: var(--texto-suave); font-size: 0.95rem; margin-bottom: 16px; }
 .servicio li {
@@ -600,6 +640,11 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     transition: var(--transicion);
 }
 .whatsapp:hover { transform: scale(1.1); }
+.whatsapp svg {
+    width: 30px;
+    height: 30px;
+    color: #ffffff;                  /* fill="currentColor" en el SVG = toma este blanco */
+}
 @keyframes pulso {
     0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }   /* Anillo que nace... */
     70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }  /* ...crece y se desvanece */
