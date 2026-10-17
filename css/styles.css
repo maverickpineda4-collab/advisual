@@ -668,9 +668,10 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 .visor__caja { position: relative; margin: 0; } /* Contenedor del video + botón cerrar */
 
 .visor__video {
-    height: min(82vh, 900px);          /* Alto: el menor entre 82% de pantalla y 900px */
-    aspect-ratio: 9 / 16;              /* Mantiene proporción vertical de reel SIEMPRE */
-    max-width: 92vw;                   /* Nunca se sale de la pantalla en horizontal */
+    max-height: 82vh;                  /* Nunca más alto que el 82% de la pantalla */
+    max-width: 92vw;                   /* Ni más ancho que el 92% de la pantalla */
+    /* Sin alto/ancho fijo: el navegador mantiene la proporción ORIGINAL de cada
+       video (9:16 vertical para reels, 16:9 horizontal para videoclips) */
     border-radius: 16px;
     border: 1px solid var(--borde);
     background: #000;                  /* Fondo negro mientras carga */
