@@ -1,19 +1,23 @@
 # ══════════════════════════════════════════════════════════
 # .gitignore — Archivos que Git debe IGNORAR (nunca se suben)
+# OJO: los comentarios deben ir en su PROPIA línea.
+# Un comentario al final de una línea invalida el patrón.
 # ══════════════════════════════════════════════════════════
 
-# Dependencias: se instalan con "npm install", pesan +100 MB.
-# Subirlas sería como enviar toda la ferretería cuando solo
-# necesitas compartir el plano de la casa.
+# Dependencias: se instalan con "npm install", pesan +100 MB
 node_modules/
 
 # Carpeta de producción: se regenera con "npm run build"
 dist/
 
+# Caché local de Wrangler (se regenera solo al desplegar)
+.wrangler/
+
+# Archivos temporales de herramientas del agente
+.temp/
+
 # Registros y archivos temporales
 *.log
-.temp/          # Archivos temporales de herramientas del agente
-.wrangler/      # Caché local de Wrangler (se regenera solo)
 
 # Archivos basura de Windows / Mac
 Thumbs.db
