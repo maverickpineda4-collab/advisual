@@ -1,1 +1,0 @@
-{"action":"evaluate","args":{"code":"(()=>{const b=[...document.querySelectorAll('button,a')].find(e=>/download log/i.test(e.textContent)); if(!b) return 'no encontrado'; b.click(); return 'clic hecho';})()"},"session":"advisual-deploy"}
