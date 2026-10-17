@@ -22,3 +22,10 @@ dist/
 # Archivos basura de Windows / Mac
 Thumbs.db
 .DS_Store
+
+# Herramientas locales del proyecto (ffmpeg portable, ~115 MB; no va al repo)
+.herramientas/
+
+# Videos fuente SIN comprimir (pesan decenas de MB)
+# Al repo solo suben los comprimidos que están en public/video/
+assets/video/*-original.mp4

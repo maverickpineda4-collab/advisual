@@ -173,4 +173,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    /* ──────────────────────────────────────────────
+       9. VISOR DE VIDEO (modal del portafolio)
+       Abre el video de cualquier tarjeta que tenga
+       el atributo data-video. Se cierra con el botón ✕,
+       haciendo clic en el fondo oscuro o con la tecla Esc.
+       ────────────────────────────────────────────── */
+    const visor       = document.getElementById("visor");
+    const visorVideo  = document.getElementById("visorVideo");
+    const visorTitulo = document.getElementById("visorTitulo");
+    const visorCerrar = document.getElementById("visorCerrar");
+
+    // Función ABRIR: recibe la tarjeta clickeada y muestra su video
+    const abrirVisor = (tarjeta) => {
+        visorVideo.src = tarjeta.dataset.video;           // Cargamos el video recién ahora (ahorro de datos)
+        visorTitulo.textContent = tarjeta.dataset.titulo; // Título debajo del video
+        visor.classList.add("abierto");                   // El CSS lo hace visible con transición
+        visor.setAttribute("aria-hidden", "false");       // Avisamos a lectores de pantalla
+        document.body.style.overflow = "hidden";          // Bloqueamos el scroll de la página de fondo
+        visorVideo.play().catch(() => {});                // Reproduce; si el navegador lo bloquea, no pasa nada
+    };
+
+    // Función CERRAR: detiene el video y restaura la página
+    const cerrarVisor = () => {
+        visorVideo.pause();
+        visorVideo.removeAttribute("src"); // Liberamos la memoria del video
+        visorVideo.load();                 // Reseteamos el reproductor
+        visor.classList.remove("abierto");
+        visor.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = ""; // Devolvemos el scroll a la página
+    };
+
+    // Clic en cualquier tarjeta del portafolio que tenga data-video → abrir
+    document.querySelectorAll(".proyecto[data-video]").forEach((tarjeta) => {
+        tarjeta.addEventListener("click", () => abrirVisor(tarjeta));
+        // Accesibilidad: Enter o Espacio también abren (la tarjeta tiene tabindex="0")
+        tarjeta.addEventListener("keydown", (evento) => {
+            if (evento.key === "Enter" || evento.key === " ") {
+                evento.preventDefault(); // Evita que Espacio haga scroll de la página
+                abrirVisor(tarjeta);
+            }
+        });
+    });
+
+    // Tres formas de cerrar: botón ✕, clic en el fondo oscuro, tecla Escape
+    visorCerrar.addEventListener("click", cerrarVisor);
+    visor.querySelector("[data-cerrar]").addEventListener("click", cerrarVisor);
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && visor.classList.contains("abierto")) cerrarVisor();
+    });
+
 });

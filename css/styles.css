@@ -450,7 +450,18 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     display: grid;
     place-items: center;
     position: relative;
+    overflow: hidden;                  /* Recorta la imagen vertical 9:16 para llenar la tarjeta */
 }
+/* Miniatura con imagen real (reemplaza a los degradados de relleno) */
+.proyecto__miniatura img {
+    width: 100%; height: 100%;
+    object-fit: cover;                 /* Llena la tarjeta sin deformarse (recorta el exceso) */
+    position: absolute;                /* La imagen queda de fondo... */
+    inset: 0;
+    transition: var(--transicion);
+}
+.proyecto:hover .proyecto__miniatura img { transform: scale(1.05); } /* Zoom sutil al pasar el mouse */
+.proyecto__miniatura .proyecto__play { position: relative; }         /* ...y el botón ▶ flota encima */
 /* Degradados de relleno distintos por proyecto (luego se cambian por fotos reales) */
 .proyecto__miniatura--g1 { background: linear-gradient(135deg, #7c5cff, #3b2b8f); }
 .proyecto__miniatura--g2 { background: linear-gradient(135deg, #22d3ee, #0e5a72); }
@@ -652,7 +663,65 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 
 /* ──────────────────────────────────────────────
-   16. RESPONSIVE (adaptación a tablets y celulares)
+   16. VISOR DE VIDEO (modal a pantalla completa)
+   Se abre al hacer clic en una tarjeta del portafolio
+   que tenga data-video. Lo controla js/main.js.
+   ────────────────────────────────────────────── */
+.visor {
+    position: fixed;                   /* Flota sobre TODO, sin moverse al hacer scroll */
+    inset: 0;                          /* Cubre las 4 esquinas de la pantalla */
+    z-index: 200;                      /* Por encima del menú (100) y del botón WhatsApp */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;                        /* Oculto pero presente: permite la transición */
+    visibility: hidden;                /* No recibe clics mientras está cerrado */
+    transition: var(--transicion);
+}
+.visor.abierto { opacity: 1; visibility: visible; } /* El JS agrega esta clase para mostrarlo */
+
+.visor__fondo {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);   /* Oscuro casi total: toda la atención al video */
+    backdrop-filter: blur(8px);        /* Desenfoque elegante detrás */
+}
+
+.visor__caja { position: relative; margin: 0; } /* Contenedor del video + botón cerrar */
+
+.visor__video {
+    height: min(82vh, 900px);          /* Alto: el menor entre 82% de pantalla y 900px */
+    aspect-ratio: 9 / 16;              /* Mantiene proporción vertical de reel SIEMPRE */
+    max-width: 92vw;                   /* Nunca se sale de la pantalla en horizontal */
+    border-radius: 16px;
+    border: 1px solid var(--borde);
+    background: #000;                  /* Fondo negro mientras carga */
+    display: block;
+}
+
+.visor__cerrar {
+    position: absolute;
+    top: -48px; right: 0;              /* Flota justo encima de la esquina del video */
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: var(--transicion);
+}
+.visor__cerrar:hover { background: var(--acento); border-color: var(--acento); }
+
+.visor__titulo {
+    color: var(--texto-suave);
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.9rem;
+}
+
+/* ──────────────────────────────────────────────
+   17. RESPONSIVE (adaptación a tablets y celulares)
    Las @media query aplican estilos SOLO si la pantalla
    es más chica que el ancho indicado
    ────────────────────────────────────────────── */
