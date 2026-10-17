@@ -164,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 `Hola Advisual 👋 Soy ${nombre}. Me interesa: ${tipo}. ${mensaje}`
             );
 
-            // Abrimos WhatsApp con el mensaje listo para enviar. ← Cambia por tu número real
-            window.open(`https://wa.me/56912345678?text=${texto}`, "_blank");
+            // Abrimos WhatsApp con el mensaje listo para enviar (número oficial de Advisual)
+            window.open(`https://wa.me/56953334461?text=${texto}`, "_blank");
 
             nota.textContent = "✅ Te abrimos WhatsApp con tu mensaje listo para enviar.";
         } else {
