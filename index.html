@@ -10,8 +10,9 @@
     <title>Advisual — Productora Audiovisual | Reels, Videoclips y Videos</title>
     <meta name="description" content="Advisual: productora audiovisual especializada en reels, videoclips, videos corporativos y cobertura de eventos. Historias que se ven increíbles.">
 
-    <!-- Icono de la pestaña del navegador (favicon). Luego lo reemplazamos por tu logo -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Icono de la pestaña del navegador: isotipo AV blanco sobre cuadro oscuro
+         (lo generamos desde assets/img/favicon.png con el script procesar-logo.py) -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
     <!-- ============ TIPOGRAFÍAS (Google Fonts, gratis) ============ -->
     <!-- "Sora" para títulos (moderna y con carácter) e "Inter" para textos (muy legible) -->
@@ -35,8 +36,11 @@
     <header class="nav" id="nav">
         <div class="contenedor nav__interior">
 
-            <!-- Logo de texto. Cuando me mandes tu logo en imagen, lo cambiamos aquí -->
-            <a href="#inicio" class="nav__logo">AD<span>VISUAL</span></a>
+            <!-- Logo oficial: versión BLANCA con fondo transparente (ideal para nuestro tema oscuro).
+                 Si algún día cambias el logo, solo reemplazas el archivo assets/img/logo-blanco.png -->
+            <a href="#inicio" class="nav__logo" aria-label="Advisual - Inicio">
+                <img src="assets/img/logo-blanco.png" alt="Advisual — Productora audiovisual" class="nav__logo-img">
+            </a>
 
             <!-- Enlaces del menú (en pantallas grandes se ven en fila; en móvil se esconden) -->
             <nav class="nav__links" id="menuMovil">
@@ -379,7 +383,10 @@
          ══════════════════════════════════════════════════════════════ -->
     <footer class="footer">
         <div class="contenedor footer__interior">
-            <a href="#inicio" class="nav__logo">AD<span>VISUAL</span></a>
+            <!-- El mismo logo blanco, un poco más grande que en la navegación -->
+            <a href="#inicio" class="nav__logo" aria-label="Advisual - Volver arriba">
+                <img src="assets/img/logo-blanco.png" alt="Advisual" class="footer__logo-img">
+            </a>
             <p class="footer__texto">Productora audiovisual · Reels, videoclips y videos que venden.</p>
             <div class="footer__redes">
                 <!-- Reemplaza los # por los enlaces reales de tus redes -->

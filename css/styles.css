@@ -146,17 +146,25 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 .nav__interior { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
+/* Logo de la navegación: ahora es una IMAGEN (el logo blanco oficial) */
 .nav__logo {
-    font-family: "Sora", sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
+    display: flex;          /* Centra la imagen verticalmente dentro del enlace */
+    align-items: center;
 }
-.nav__logo span {
-    background: var(--degradado);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;                 /* "VISUAL" en degradado, "AD" en blanco */
+.nav__logo-img {
+    height: 44px;           /* Alto fijo en la barra; el ancho se calcula solo (proporción) */
+    width: auto;
+    transition: var(--transicion);
+}
+.nav__logo:hover .nav__logo-img {
+    transform: scale(1.04); /* Leve zoom al pasar el mouse: detalle interactivo */
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.25)); /* Halo sutil */
+}
+
+/* Versión del logo en el footer: un poco más grande */
+.footer__logo-img {
+    height: 64px;
+    width: auto;
 }
 
 .nav__links { display: flex; gap: 32px; }
@@ -632,6 +640,7 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     .nav__link { font-size: 1.2rem; }
     .nav__cta { display: none; }       /* En móvil el botón Cotizar va dentro del menú (ahorro de espacio) */
     .nav__hamburguesa { display: flex; z-index: 100; } /* Ahora sí aparece el botón ☰ */
+    .nav__logo-img { height: 34px; }   /* Logo más compacto en pantallas chicas */
 
     /* Animación del ☰ que se convierte en ✕ cuando el menú está abierto */
     .nav__hamburguesa.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
