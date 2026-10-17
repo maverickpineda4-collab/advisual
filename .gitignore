@@ -12,6 +12,8 @@ dist/
 
 # Registros y archivos temporales
 *.log
+.temp/          # Archivos temporales de herramientas del agente
+.wrangler/      # Caché local de Wrangler (se regenera solo)
 
 # Archivos basura de Windows / Mac
 Thumbs.db
