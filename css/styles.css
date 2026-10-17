@@ -1,0 +1,647 @@
+/* ════════════════════════════════════════════════════════════════════
+   ADVISUAL — Hoja de estilos (CSS3 moderno)
+   El CSS es la "pintura y decoración" de la página: colores, tamaños,
+   animaciones y cómo se acomoda todo en pantallas grandes y chicas.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────
+   1. VARIABLES DE DISEÑO
+   Son "palabras mágicas": cambias el valor UNA vez aquí
+   y toda la página se actualiza (colores de marca, etc.)
+   ────────────────────────────────────────────── */
+:root {
+    --fondo:        #07070d;   /* Fondo principal: casi negro (elegante) */
+    --superficie:   #0e0e18;   /* Fondo de tarjetas: un tono más claro */
+    --borde:        rgba(255, 255, 255, 0.08); /* Bordes sutiles */
+    --texto:        #f4f4f8;   /* Texto principal: blanco suave */
+    --texto-suave:  #a2a2b8;   /* Texto secundario: gris lavanda */
+    --acento:       #7c5cff;   /* Violeta eléctrico (color de marca) */
+    --acento-2:     #22d3ee;   /* Cian neón (color de apoyo) */
+    --degradado:    linear-gradient(135deg, #7c5cff, #22d3ee); /* Degradado de marca */
+    --radio:        16px;      /* Qué tan redondeadas son las tarjetas */
+    --transicion:   0.3s ease; /* Velocidad estándar de las animaciones */
+}
+
+/* ──────────────────────────────────────────────
+   2. RESET Y BASE
+   Los navegadores traen márgenes "de fábrica"; los limpiamos
+   para partir desde cero y que todo se vea igual en todos lados
+   ────────────────────────────────────────────── */
+* {
+    margin: 0;                 /* Quita márgenes externos por defecto */
+    padding: 0;                /* Quita rellenos internos por defecto */
+    box-sizing: border-box;    /* El ancho incluye borde y relleno (evita sorpresas) */
+}
+
+html {
+    scroll-behavior: smooth;   /* Los enlaces a secciones bajan con deslizamiento suave */
+}
+
+body {
+    background-color: var(--fondo);       /* Fondo oscuro en toda la página */
+    color: var(--texto);                  /* Texto claro por defecto */
+    font-family: "Inter", sans-serif;     /* Tipografía para textos */
+    font-size: 16px;
+    line-height: 1.6;                     /* Espacio entre líneas (legibilidad) */
+    overflow-x: hidden;                   /* Evita scroll horizontal accidental */
+}
+
+/* Los títulos usan la segunda tipografía (Sora), más llamativa */
+h1, h2, h3 {
+    font-family: "Sora", sans-serif;
+    line-height: 1.15;
+}
+
+a { color: inherit; text-decoration: none; } /* Enlaces sin subrayado azul feo */
+ul { list-style: none; }                     /* Listas sin puntitos por defecto */
+img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de su caja */
+
+/* Selección de texto con color de marca (detalle de lujo) */
+::selection { background: var(--acento); color: white; }
+
+/* Barra de scroll personalizada (detalle de lujo en PC) */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--fondo); }
+::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--acento); }
+
+/* ──────────────────────────────────────────────
+   3. UTILIDADES REUTILIZABLES
+   ────────────────────────────────────────────── */
+.contenedor {
+    max-width: 1200px;   /* El contenido nunca se estira más de 1200px (se ve pro en pantallas grandes) */
+    margin: 0 auto;      /* Centra el contenido horizontalmente */
+    padding: 0 24px;     /* Aire a los lados en pantallas chicas */
+}
+
+.seccion { padding: 110px 0; }              /* Espacio vertical generoso entre secciones */
+.seccion--oscura { background: var(--superficie); } /* Alterna el fondo para dar ritmo visual */
+
+/* Encabezado estándar de cada sección */
+.seccion__encabezado { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+.seccion__etiqueta {
+    color: var(--acento-2);                 /* Mini-título en cian */
+    text-transform: uppercase;              /* MAYÚSCULAS */
+    letter-spacing: 3px;                    /* Letras separadas = elegante */
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.seccion__titulo { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
+/* clamp() = tamaño fluido: mínimo 2rem, ideal 4% del ancho, máximo 3rem */
+.seccion__titulo span {
+    background: var(--degradado);           /* La palabra destacada lleva degradado */
+    -webkit-background-clip: text;          /* Recorta el degradado a la forma del texto */
+    background-clip: text;
+    color: transparent;                     /* El color sólido se vuelve invisible y se ve el degradado */
+}
+.seccion__descripcion { color: var(--texto-suave); margin-top: 16px; }
+
+/* ──────────────────────────────────────────────
+   4. BOTONES
+   ────────────────────────────────────────────── */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 50px;                /* 50px en botón bajo = forma de "píldora" */
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transicion);      /* Anima suavemente cualquier cambio (hover, etc.) */
+    cursor: pointer;
+    border: none;
+}
+.btn--primario {
+    background: var(--degradado);       /* Botón principal con el degradado de marca */
+    color: white;
+    box-shadow: 0 8px 30px rgba(124, 92, 255, 0.35); /* Sombra violeta brillante */
+}
+.btn--primario:hover {
+    transform: translateY(-3px);        /* Al pasar el mouse, el botón "flota" 3px */
+    box-shadow: 0 14px 40px rgba(124, 92, 255, 0.5);
+}
+.btn--secundario {
+    background: transparent;
+    color: var(--texto);
+    border: 1px solid var(--borde);     /* Botón fantasma: solo borde */
+}
+.btn--secundario:hover { border-color: var(--acento); color: var(--acento-2); transform: translateY(-3px); }
+
+/* ──────────────────────────────────────────────
+   5. NAVEGACIÓN
+   ────────────────────────────────────────────── */
+.nav {
+    position: fixed;        /* Fija: siempre visible aunque bajes la página */
+    top: 0; left: 0; right: 0;
+    z-index: 100;           /* z-index alto = por ENCIMA de todo lo demás */
+    padding: 18px 0;
+    transition: var(--transicion);
+}
+/* Clase que agrega el JS al bajar: fondo tipo vidrio esmerilado */
+.nav--solido {
+    background: rgba(7, 7, 13, 0.75);
+    backdrop-filter: blur(16px);        /* El desenfoque de vidrio (efecto premium) */
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--borde);
+    padding: 12px 0;
+}
+.nav__interior { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+.nav__logo {
+    font-family: "Sora", sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+.nav__logo span {
+    background: var(--degradado);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;                 /* "VISUAL" en degradado, "AD" en blanco */
+}
+
+.nav__links { display: flex; gap: 32px; }
+.nav__link {
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;                 /* Necesario para la línea animada de abajo */
+    transition: var(--transicion);
+}
+.nav__link::after {                     /* Línea que aparece bajo el enlace al pasar el mouse */
+    content: "";
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0;                           /* Empieza invisible (ancho 0) */
+    height: 2px;
+    background: var(--degradado);
+    transition: var(--transicion);
+}
+.nav__link:hover { color: var(--texto); }
+.nav__link:hover::after { width: 100%; } /* La línea crece hasta cubrir el enlace */
+
+/* Botón hamburguesa: OCULTO en pantallas grandes, aparece en móvil */
+.nav__hamburguesa {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+.nav__hamburguesa span {
+    width: 24px; height: 2px;
+    background: var(--texto);
+    border-radius: 2px;
+    transition: var(--transicion);
+}
+
+/* ──────────────────────────────────────────────
+   6. HERO (portada con video de fondo)
+   ────────────────────────────────────────────── */
+.hero {
+    position: relative;                 /* Referencia para posicionar el video y el overlay encima */
+    min-height: 100vh;                  /* 100vh = toda la altura de la pantalla */
+    display: flex;
+    align-items: center;                /* Centra el contenido verticalmente */
+    overflow: hidden;                   /* Lo que se salga (video) queda recortado */
+}
+.hero__video {
+    position: absolute;                 /* Se pega al fondo de la sección, detrás del texto */
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);   /* Truco para centrar perfectamente un elemento absoluto */
+    min-width: 100%; min-height: 100%;  /* Cubre toda la sección sin dejar huecos */
+    object-fit: cover;                  /* Como "background-size: cover" pero para video */
+    z-index: -2;                        /* Detrás del overlay y del texto */
+}
+.hero__overlay {
+    position: absolute;
+    inset: 0;                           /* Cubre todo (equivale a top/right/bottom/left = 0) */
+    background: linear-gradient(180deg,
+        rgba(7, 7, 13, 0.55) 0%,        /* Arriba: oscuro medio */
+        rgba(7, 7, 13, 0.35) 45%,       /* Centro: más transparente para lucir el video */
+        rgba(7, 7, 13, 0.95) 100%);     /* Abajo: casi negro para fundirse con la sección siguiente */
+    z-index: -1;                        /* Encima del video, debajo del texto */
+}
+.hero__contenido { text-align: center; padding-top: 80px; }
+
+.hero__badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid var(--borde);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    margin-bottom: 28px;
+}
+.hero__titulo {
+    font-size: clamp(2.6rem, 7vw, 5.2rem); /* Título gigante y fluido */
+    font-weight: 800;
+    letter-spacing: -1px;                  /* Letras ligeramente juntas = look moderno */
+    margin-bottom: 24px;
+}
+.hero__titulo span {
+    background: var(--degradado);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero__subtitulo {
+    max-width: 620px;
+    margin: 0 auto 40px;
+    color: var(--texto-suave);
+    font-size: 1.1rem;
+}
+.hero__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Flechita animada que invita a bajar */
+.hero__scroll {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: var(--texto-suave);
+    animation: flotar 2s ease-in-out infinite; /* Sube y baja sin parar */
+}
+@keyframes flotar {                         /* Definición de esa animación */
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ──────────────────────────────────────────────
+   7. CINTA EN MOVIMIENTO (marquee infinito)
+   ────────────────────────────────────────────── */
+.cinta {
+    background: var(--degradado);
+    padding: 14px 0;
+    overflow: hidden;               /* Esconde el texto que sale por los lados */
+    transform: rotate(-1.2deg);     /* Leve inclinación: toque "festival de cine" */
+    margin: -20px 0;
+}
+.cinta__pista {
+    display: flex;                  /* Los dos spans uno al lado del otro */
+    white-space: nowrap;            /* Nunca partir el texto en dos líneas */
+    animation: cinta 22s linear infinite; /* Se mueve solo, en bucle, a velocidad constante */
+    font-family: "Sora", sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #0a0a12;
+}
+@keyframes cinta {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); } /* Al moverse -50% (un span), el loop es perfecto */
+}
+
+/* ──────────────────────────────────────────────
+   8. SERVICIOS (rejilla de tarjetas)
+   ────────────────────────────────────────────── */
+.servicios__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales en PC */
+    gap: 24px;
+}
+.servicio {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 36px 30px;
+    transition: var(--transicion);
+    position: relative;
+    overflow: hidden;
+}
+/* Brillo degradado que aparece encima de la tarjeta al pasar el mouse */
+.servicio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--degradado);
+    opacity: 0;                          /* Invisible por defecto */
+    transition: var(--transicion);
+}
+.servicio:hover::before { opacity: 0.07; } /* Brillo sutil al 7% */
+.servicio:hover {
+    transform: translateY(-8px);         /* La tarjeta "flota" hacia arriba */
+    border-color: rgba(124, 92, 255, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+.servicio__icono {
+    font-size: 2.2rem;
+    width: 64px; height: 64px;
+    display: grid;
+    place-items: center;                 /* Centra el emoji dentro del círculo */
+    background: rgba(124, 92, 255, 0.12);
+    border: 1px solid rgba(124, 92, 255, 0.3);
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+.servicio h3 { font-size: 1.25rem; margin-bottom: 10px; }
+.servicio p { color: var(--texto-suave); font-size: 0.95rem; margin-bottom: 16px; }
+.servicio li {
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+    padding: 4px 0 4px 22px;
+    position: relative;
+}
+.servicio li::before {                   /* Palomita decorativa antes de cada ítem */
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--acento-2);
+    font-weight: 700;
+}
+
+/* ──────────────────────────────────────────────
+   9. PORTAFOLIO (filtros + rejilla de proyectos)
+   ────────────────────────────────────────────── */
+.filtros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+}
+.filtro {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto-suave);
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.filtro:hover { border-color: var(--acento); color: var(--texto); }
+.filtro.activo {                       /* El botón de la categoría seleccionada */
+    background: var(--degradado);
+    border-color: transparent;
+    color: white;
+}
+
+.portafolio__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.proyecto {
+    border-radius: var(--radio);
+    overflow: hidden;                  /* Recorta la miniatura a las esquinas redondeadas */
+    border: 1px solid var(--borde);
+    background: var(--fondo);
+    transition: var(--transicion);
+    cursor: pointer;
+}
+.proyecto:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+.proyecto.oculto { display: none; }    /* El JS agrega/quita esta clase al filtrar */
+
+.proyecto__miniatura {
+    aspect-ratio: 16 / 9;              /* Proporción de video: siempre rectangular 16:9 */
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+/* Degradados de relleno distintos por proyecto (luego se cambian por fotos reales) */
+.proyecto__miniatura--g1 { background: linear-gradient(135deg, #7c5cff, #3b2b8f); }
+.proyecto__miniatura--g2 { background: linear-gradient(135deg, #22d3ee, #0e5a72); }
+.proyecto__miniatura--g3 { background: linear-gradient(135deg, #ff5c8a, #7a1f3d); }
+.proyecto__miniatura--g4 { background: linear-gradient(135deg, #f7b733, #8f5b00); }
+.proyecto__miniatura--g5 { background: linear-gradient(135deg, #43e97b, #0f5a38); }
+.proyecto__miniatura--g6 { background: linear-gradient(135deg, #b06cff, #41127a); }
+
+.proyecto__play {
+    width: 60px; height: 60px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;                /* Círculo perfecto */
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+    transition: var(--transicion);
+}
+.proyecto:hover .proyecto__play {
+    transform: scale(1.15);            /* El botón de play crece al pasar el mouse */
+    background: var(--acento);
+}
+.proyecto__info { padding: 18px 20px; }
+.proyecto__info h3 { font-size: 1rem; margin-bottom: 4px; }
+.proyecto__info p { color: var(--texto-suave); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* ──────────────────────────────────────────────
+   10. CIFRAS (contadores)
+   ────────────────────────────────────────────── */
+.cifras {
+    background: var(--degradado);
+    padding: 70px 0;
+}
+.cifras__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+.cifra__numero, .cifra__mas {
+    font-family: "Sora", sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: #0a0a12;                    /* Números oscuros sobre la cinta de color */
+}
+.cifra p { color: rgba(10, 10, 18, 0.75); font-weight: 600; }
+
+/* ──────────────────────────────────────────────
+   11. PROCESO (4 pasos)
+   ────────────────────────────────────────────── */
+.proceso__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.paso {
+    padding: 34px 26px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--superficie);
+    transition: var(--transicion);
+}
+.paso:hover { border-color: rgba(34, 211, 238, 0.5); transform: translateY(-6px); }
+.paso__numero {
+    font-family: "Sora", sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    background: var(--degradado);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: block;
+    margin-bottom: 14px;
+}
+.paso h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.paso p { color: var(--texto-suave); font-size: 0.92rem; }
+
+/* ──────────────────────────────────────────────
+   12. TESTIMONIOS (carrusel)
+   ────────────────────────────────────────────── */
+.carrusel { max-width: 760px; margin: 0 auto; overflow: hidden; }
+.carrusel__pista {
+    display: flex;                     /* Las 3 tarjetas en fila... */
+    transition: transform 0.5s ease;   /* ...y el JS las desliza con transform */
+}
+.testimonio {
+    min-width: 100%;                   /* Cada tarjeta ocupa todo el ancho visible */
+    padding: 44px 40px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    text-align: center;
+}
+.testimonio p { font-size: 1.15rem; font-style: italic; margin-bottom: 20px; }
+.testimonio footer { color: var(--acento-2); font-weight: 600; font-size: 0.9rem; }
+
+.carrusel__controles { display: flex; justify-content: center; gap: 12px; margin-top: 26px; }
+.carrusel__controles button {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.carrusel__controles button:hover { background: var(--acento); border-color: var(--acento); }
+
+/* ──────────────────────────────────────────────
+   13. CONTACTO (texto + formulario)
+   ────────────────────────────────────────────── */
+.contacto__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* Dos columnas iguales */
+    gap: 60px;
+    align-items: start;
+}
+.contacto__info .seccion__titulo, .contacto__info .seccion__etiqueta { text-align: left; }
+.contacto__datos { margin-top: 28px; display: grid; gap: 14px; }
+.contacto__datos a:hover { color: var(--acento-2); }
+
+.formulario {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 36px;
+    display: grid;
+    gap: 8px;
+}
+.formulario label { font-size: 0.85rem; font-weight: 600; color: var(--texto-suave); margin-top: 8px; }
+.formulario input,
+.formulario select,
+.formulario textarea {
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--texto);
+    font-family: "Inter", sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transicion);
+    width: 100%;
+}
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+    outline: none;                          /* Quitamos el borde azul feo del navegador... */
+    border-color: var(--acento);            /* ...y ponemos el nuestro violeta */
+    box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+}
+.formulario textarea { resize: vertical; }  /* El usuario solo puede estirar el alto, no el ancho */
+.formulario__boton { margin-top: 16px; text-align: center; }
+.formulario__nota { font-size: 0.85rem; color: var(--acento-2); text-align: center; min-height: 20px; }
+
+/* ──────────────────────────────────────────────
+   14. FOOTER
+   ────────────────────────────────────────────── */
+.footer {
+    border-top: 1px solid var(--borde);
+    padding: 56px 0 32px;
+    text-align: center;
+}
+.footer__interior { display: grid; gap: 14px; justify-items: center; }
+.footer__texto { color: var(--texto-suave); font-size: 0.9rem; }
+.footer__redes { display: flex; gap: 26px; }
+.footer__redes a { color: var(--texto-suave); font-size: 0.9rem; transition: var(--transicion); }
+.footer__redes a:hover { color: var(--acento-2); }
+.footer__copy { color: #5b5b70; font-size: 0.8rem; }
+
+/* ──────────────────────────────────────────────
+   15. BOTÓN FLOTANTE DE WHATSAPP
+   ────────────────────────────────────────────── */
+.whatsapp {
+    position: fixed;                 /* Flota sobre todo, siempre visible */
+    bottom: 26px; right: 26px;
+    z-index: 90;
+    width: 58px; height: 58px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    background: #25d366;             /* Verde oficial de WhatsApp */
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    animation: pulso 2.4s infinite;  /* Latido que llama la atención sin molestar */
+    transition: var(--transicion);
+}
+.whatsapp:hover { transform: scale(1.1); }
+@keyframes pulso {
+    0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }   /* Anillo que nace... */
+    70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }  /* ...crece y se desvanece */
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ──────────────────────────────────────────────
+   16. RESPONSIVE (adaptación a tablets y celulares)
+   Las @media query aplican estilos SOLO si la pantalla
+   es más chica que el ancho indicado
+   ────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .servicios__grid, .portafolio__grid { grid-template-columns: repeat(2, 1fr); } /* 2 columnas en tablet */
+    .proceso__grid { grid-template-columns: repeat(2, 1fr); }
+    .cifras__grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+}
+
+@media (max-width: 768px) {
+    .seccion { padding: 80px 0; }
+
+    /* Menú móvil: los enlaces pasan a un panel desplegable */
+    .nav__links {
+        position: fixed;
+        top: 0; right: -100%;          /* Escondido fuera de la pantalla, a la derecha */
+        width: min(78vw, 320px);       /* Ancho del panel: 78% de la pantalla o 320px máx. */
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 34px;
+        background: rgba(10, 10, 16, 0.97);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid var(--borde);
+        transition: right 0.4s ease;   /* Se desliza al abrirse */
+        z-index: 99;
+    }
+    .nav__links.abierto { right: 0; }  /* El JS agrega esta clase y el panel entra */
+    .nav__link { font-size: 1.2rem; }
+    .nav__cta { display: none; }       /* En móvil el botón Cotizar va dentro del menú (ahorro de espacio) */
+    .nav__hamburguesa { display: flex; z-index: 100; } /* Ahora sí aparece el botón ☰ */
+
+    /* Animación del ☰ que se convierte en ✕ cuando el menú está abierto */
+    .nav__hamburguesa.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburguesa.abierto span:nth-child(2) { opacity: 0; }
+    .nav__hamburguesa.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .servicios__grid, .portafolio__grid { grid-template-columns: 1fr; } /* 1 columna en celular */
+    .contacto__grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero__cta { flex-direction: column; align-items: center; }
+    .hero__cta .btn { width: 100%; max-width: 320px; text-align: center; }
+    .formulario { padding: 26px; }
+    .cinta { transform: rotate(0); }   /* En móvil la cinta recta se ve mejor */
+}

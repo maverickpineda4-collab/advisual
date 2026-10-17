@@ -1,0 +1,403 @@
+<!DOCTYPE html> <!-- Le dice al navegador: "esto es HTML5 moderno" -->
+<html lang="es"> <!-- lang="es" ayuda a Google y a los lectores de pantalla a saber que el sitio está en español -->
+
+<head>
+    <!-- ============ CONFIGURACIÓN BÁSICA (no se ve en pantalla, pero es vital) ============ -->
+    <meta charset="UTF-8"> <!-- Permite tildes y eñes sin que se vean símbolos raros -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la web se adapte a celulares (responsive) -->
+
+    <!-- SEO: lo que aparece en Google cuando alguien busca "advisual" -->
+    <title>Advisual — Productora Audiovisual | Reels, Videoclips y Videos</title>
+    <meta name="description" content="Advisual: productora audiovisual especializada en reels, videoclips, videos corporativos y cobertura de eventos. Historias que se ven increíbles.">
+
+    <!-- Icono de la pestaña del navegador (favicon). Luego lo reemplazamos por tu logo -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- ============ TIPOGRAFÍAS (Google Fonts, gratis) ============ -->
+    <!-- "Sora" para títulos (moderna y con carácter) e "Inter" para textos (muy legible) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Acelera la conexión con Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ============ LIBRERÍA DE ANIMACIONES AL HACER SCROLL (AOS) ============ -->
+    <!-- AOS = "Animate On Scroll". Hace que las secciones aparezcan suavemente al bajar -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <!-- ============ NUESTROS ESTILOS (la "pintura" de la casa) ============ -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         BARRA DE NAVEGACIÓN (fija arriba, con efecto vidrio)
+         ══════════════════════════════════════════════════════════════ -->
+    <header class="nav" id="nav">
+        <div class="contenedor nav__interior">
+
+            <!-- Logo de texto. Cuando me mandes tu logo en imagen, lo cambiamos aquí -->
+            <a href="#inicio" class="nav__logo">AD<span>VISUAL</span></a>
+
+            <!-- Enlaces del menú (en pantallas grandes se ven en fila; en móvil se esconden) -->
+            <nav class="nav__links" id="menuMovil">
+                <a href="#inicio"      class="nav__link">Inicio</a>
+                <a href="#servicios"   class="nav__link">Servicios</a>
+                <a href="#portafolio"  class="nav__link">Portafolio</a>
+                <a href="#proceso"     class="nav__link">Proceso</a>
+                <a href="#contacto"    class="nav__link">Contacto</a>
+            </nav>
+
+            <!-- Botón de acción rápida: cotizar por WhatsApp -->
+            <a href="https://wa.me/56912345678?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20video"
+               class="btn btn--primario nav__cta" target="_blank" rel="noopener">Cotizar</a>
+            <!-- ☝️ IMPORTANTE: reemplaza 56912345678 por tu número real de WhatsApp (código país + número, sin +) -->
+
+            <!-- Botón "hamburguesa" (solo visible en celular). El JS le da vida -->
+            <button class="nav__hamburguesa" id="botonMenu" aria-label="Abrir menú">
+                <span></span><span></span><span></span> <!-- Las 3 rayitas del ícono -->
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN HERO (la portada: lo primero que impacta)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="hero" id="inicio">
+
+            <!-- VIDEO DE FONDO:
+                 autoplay = arranca solo | muted = sin sonido (OBLIGATORIO para que el navegador lo deje reproducir)
+                 loop = se repite | playsinline = no abre pantalla completa en iPhone -->
+            <video class="hero__video" autoplay muted loop playsinline>
+                <!-- Opción 1: tu propio video. Graba/exporta un clip corto (5-15 s), llámalo hero.mp4
+                     y guárdalo en la carpeta assets/video/ -->
+                <source src="assets/video/hero.mp4" type="video/mp4">
+                <!-- Opción 2 (respaldo temporal): video de muestra de internet para que veas el efecto YA.
+                     Cuando tengas tu video, BORRA esta línea -->
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+            </video>
+
+            <!-- Capa oscura encima del video para que el texto se lea bien -->
+            <div class="hero__overlay"></div>
+
+            <!-- Contenido de la portada -->
+            <div class="contenedor hero__contenido">
+                <p class="hero__badge" data-aos="fade-down">🎬 Productora audiovisual</p>
+
+                <!-- Titular principal. La palabra dentro de <span> sale con degradado de color -->
+                <h1 class="hero__titulo" data-aos="fade-up">
+                    Historias que se ven<br><span>increíbles</span>
+                </h1>
+
+                <p class="hero__subtitulo" data-aos="fade-up" data-aos-delay="150">
+                    Reels que detienen el scroll, videoclips con cine y videos corporativos
+                    que venden. Producción completa: idea, rodaje y postproducción.
+                </p>
+
+                <!-- Botones de acción -->
+                <div class="hero__cta" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#portafolio" class="btn btn--primario">▶ Ver portafolio</a>
+                    <a href="#contacto" class="btn btn--secundario">Hablemos de tu proyecto</a>
+                </div>
+            </div>
+
+            <!-- Flechita animada que invita a bajar -->
+            <a href="#servicios" class="hero__scroll" aria-label="Bajar a servicios">⌄</a>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CINTA EN MOVIMIENTO (marquee): toque moderno tipo "festival de cine"
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="cinta" aria-hidden="true">
+            <div class="cinta__pista">
+                <!-- El contenido se repite 2 veces para que el loop infinito no se corte (truco CSS) -->
+                <span>REELS ✦ VIDEOCLIPS ✦ EVENTOS ✦ CORPORATIVO ✦ DRON ✦ POSTPRODUCCIÓN ✦ MOTION GRAPHICS ✦&nbsp;</span>
+                <span>REELS ✦ VIDEOCLIPS ✦ EVENTOS ✦ CORPORATIVO ✦ DRON ✦ POSTPRODUCCIÓN ✦ MOTION GRAPHICS ✦&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN SERVICIOS (qué ofrece Advisual)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion" id="servicios">
+            <div class="contenedor">
+
+                <!-- Encabezado de sección (se reutiliza en todas las secciones) -->
+                <div class="seccion__encabezado" data-aos="fade-up">
+                    <p class="seccion__etiqueta">Servicios</p>
+                    <h2 class="seccion__titulo">Todo lo que tu marca necesita <span>en video</span></h2>
+                    <p class="seccion__descripcion">Desde la idea hasta la entrega final, en formatos pensados para cada plataforma.</p>
+                </div>
+
+                <!-- Rejilla de tarjetas: en PC se ven 3 por fila, en móvil 1 -->
+                <div class="servicios__grid">
+
+                    <!-- TARJETA DE SERVICIO (cada una tiene: ícono, título, texto y lista) -->
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="0">
+                        <div class="servicio__icono">📱</div>
+                        <h3>Reels &amp; TikTok</h3>
+                        <p>Videos verticales cortos, dinámicos y pensados para viralizar y hacer crecer tu cuenta.</p>
+                        <ul><li>Guion y ganchos</li><li>Subtítulos dinámicos</li><li>Tendencias y sonidos</li></ul>
+                    </article>
+
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="100">
+                        <div class="servicio__icono">🎵</div>
+                        <h3>Videoclips musicales</h3>
+                        <p>Dirección creativa, rodaje cinematográfico y montaje al ritmo de tu música.</p>
+                        <ul><li>Concepto y dirección de arte</li><li>Cámaras cinema</li><li>Color grading</li></ul>
+                    </article>
+
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="200">
+                        <div class="servicio__icono">🏢</div>
+                        <h3>Videos corporativos</h3>
+                        <p>Presenta tu empresa, producto o servicio con un video profesional que genere confianza.</p>
+                        <ul><li>Testimoniales</li><li>Institucionales</li><li>Spots publicitarios</li></ul>
+                    </article>
+
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="0">
+                        <div class="servicio__icono">🎉</div>
+                        <h3>Cobertura de eventos</h3>
+                        <p>Conciertos, matrimonios, lanzamientos: capturamos los mejores momentos sin perder detalle.</p>
+                        <ul><li>Multicámara</li><li>Aftermovie</li><li>Entrega express</li></ul>
+                    </article>
+
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="100">
+                        <div class="servicio__icono">🚁</div>
+                        <h3>Tomas con dron</h3>
+                        <p>Planos aéreos espectaculares que elevan la calidad visual de cualquier producción.</p>
+                        <ul><li>4K estabilizado</li><li>Planos FPV</li><li>Exteriores e interiores</li></ul>
+                    </article>
+
+                    <article class="servicio" data-aos="fade-up" data-aos-delay="200">
+                        <div class="servicio__icono">✂️</div>
+                        <h3>Edición &amp; postproducción</h3>
+                        <p>¿Ya tienes el material? Lo transformamos en un video pulido, con ritmo y acabado pro.</p>
+                        <ul><li>Montaje y ritmo</li><li>Motion graphics</li><li>Etalonaje / color</li></ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN PORTAFOLIO (tus trabajos: lo que MÁS vende)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion seccion--oscura" id="portafolio">
+            <div class="contenedor">
+
+                <div class="seccion__encabezado" data-aos="fade-up">
+                    <p class="seccion__etiqueta">Portafolio</p>
+                    <h2 class="seccion__titulo">Trabajos <span>recientes</span></h2>
+                    <p class="seccion__descripcion">Cuando tengas tus videos, cada tarjeta abrirá el reel o clip correspondiente.</p>
+                </div>
+
+                <!-- Botones de filtro: el JS muestra/oculta proyectos según la categoría -->
+                <div class="filtros" data-aos="fade-up">
+                    <button class="filtro activo" data-filtro="todos">Todos</button>
+                    <button class="filtro" data-filtro="reels">Reels</button>
+                    <button class="filtro" data-filtro="videoclips">Videoclips</button>
+                    <button class="filtro" data-filtro="eventos">Eventos</button>
+                    <button class="filtro" data-filtro="corporativo">Corporativo</button>
+                </div>
+
+                <!-- Rejilla de proyectos. data-categoria conecta cada tarjeta con su filtro -->
+                <div class="portafolio__grid">
+
+                    <!-- PROYECTO (placeholder = relleno temporal con degradado; luego ponemos miniaturas reales) -->
+                    <article class="proyecto" data-categoria="reels" data-aos="zoom-in">
+                        <div class="proyecto__miniatura proyecto__miniatura--g1"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Reel — Campaña gastronómica</h3><p>Reels</p></div>
+                    </article>
+
+                    <article class="proyecto" data-categoria="videoclips" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="proyecto__miniatura proyecto__miniatura--g2"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Videoclip — Artista urbano</h3><p>Videoclips</p></div>
+                    </article>
+
+                    <article class="proyecto" data-categoria="eventos" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="proyecto__miniatura proyecto__miniatura--g3"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Aftermovie — Festival</h3><p>Eventos</p></div>
+                    </article>
+
+                    <article class="proyecto" data-categoria="corporativo" data-aos="zoom-in">
+                        <div class="proyecto__miniatura proyecto__miniatura--g4"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Spot — Marca deportiva</h3><p>Corporativo</p></div>
+                    </article>
+
+                    <article class="proyecto" data-categoria="reels" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="proyecto__miniatura proyecto__miniatura--g5"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Reel — Lanzamiento inmobiliario</h3><p>Reels</p></div>
+                    </article>
+
+                    <article class="proyecto" data-categoria="videoclips" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="proyecto__miniatura proyecto__miniatura--g6"><span class="proyecto__play">▶</span></div>
+                        <div class="proyecto__info"><h3>Videoclip — Banda indie</h3><p>Videoclips</p></div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CIFRAS (contadores animados con JavaScript)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="cifras">
+            <div class="contenedor cifras__grid">
+                <!-- data-meta = número final hasta el que cuenta la animación (el JS lo lee) -->
+                <div class="cifra" data-aos="fade-up"><span class="cifra__numero" data-meta="120">0</span><span class="cifra__mas">+</span><p>Videos entregados</p></div>
+                <div class="cifra" data-aos="fade-up" data-aos-delay="100"><span class="cifra__numero" data-meta="45">0</span><span class="cifra__mas">+</span><p>Clientes felices</p></div>
+                <div class="cifra" data-aos="fade-up" data-aos-delay="200"><span class="cifra__numero" data-meta="8">0</span><span class="cifra__mas">M+</span><p>Reproducciones logradas</p></div>
+                <div class="cifra" data-aos="fade-up" data-aos-delay="300"><span class="cifra__numero" data-meta="3">0</span><span class="cifra__mas"></span><p>Años de experiencia</p></div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN PROCESO (cómo trabajamos: genera confianza)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion" id="proceso">
+            <div class="contenedor">
+                <div class="seccion__encabezado" data-aos="fade-up">
+                    <p class="seccion__etiqueta">Proceso</p>
+                    <h2 class="seccion__titulo">Así de simple es trabajar <span>con nosotros</span></h2>
+                </div>
+
+                <div class="proceso__grid">
+                    <!-- Cada paso: número grande + título + explicación -->
+                    <div class="paso" data-aos="fade-up">
+                        <span class="paso__numero">01</span>
+                        <h3>Conversamos</h3>
+                        <p>Nos cuentas tu idea, objetivo y presupuesto. Te respondemos el mismo día.</p>
+                    </div>
+                    <div class="paso" data-aos="fade-up" data-aos-delay="100">
+                        <span class="paso__numero">02</span>
+                        <h3>Propuesta y guion</h3>
+                        <p>Te enviamos concepto, guion y referencias visuales antes de grabar un solo plano.</p>
+                    </div>
+                    <div class="paso" data-aos="fade-up" data-aos-delay="200">
+                        <span class="paso__numero">03</span>
+                        <h3>Producción</h3>
+                        <p>Rodaje con equipo profesional: cámara, luces, audio y dirección.</p>
+                    </div>
+                    <div class="paso" data-aos="fade-up" data-aos-delay="300">
+                        <span class="paso__numero">04</span>
+                        <h3>Entrega</h3>
+                        <p>Editamos, corregimos contigo y entregamos en todos los formatos que necesites.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             TESTIMONIOS (carrusel controlado por JavaScript)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion seccion--oscura">
+            <div class="contenedor">
+                <div class="seccion__encabezado" data-aos="fade-up">
+                    <p class="seccion__etiqueta">Testimonios</p>
+                    <h2 class="seccion__titulo">Lo que dicen <span>nuestros clientes</span></h2>
+                </div>
+
+                <!-- Carrusel: el JS muestra una tarjeta a la vez -->
+                <div class="carrusel" data-aos="fade-up">
+                    <div class="carrusel__pista" id="pistaCarrusel">
+                        <blockquote class="testimonio">
+                            <p>"El reel que hicieron para nuestro restaurante superó las 300 mil reproducciones. Se notó en las reservas."</p>
+                            <footer>— Camila R., Dueña de restaurante</footer>
+                        </blockquote>
+                        <blockquote class="testimonio">
+                            <p>"Mi videoclip quedó con calidad de cine. Entendieron la idea desde la primera reunión."</p>
+                            <footer>— Diego M., Artista urbano</footer>
+                        </blockquote>
+                        <blockquote class="testimonio">
+                            <p>"Profesionales de principio a fin: guion claro, rodaje puntual y entrega antes del plazo."</p>
+                            <footer>— Andrea P., Gerente de marketing</footer>
+                        </blockquote>
+                    </div>
+                    <!-- Botones anterior / siguiente (los conecta el JS) -->
+                    <div class="carrusel__controles">
+                        <button id="btnAnterior" aria-label="Testimonio anterior">←</button>
+                        <button id="btnSiguiente" aria-label="Testimonio siguiente">→</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN CONTACTO (el objetivo final: que te escriban)
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion" id="contacto">
+            <div class="contenedor contacto__grid">
+
+                <!-- Columna izquierda: texto persuasivo + datos -->
+                <div class="contacto__info" data-aos="fade-right">
+                    <p class="seccion__etiqueta">Contacto</p>
+                    <h2 class="seccion__titulo">¿Tienes un proyecto <span>en mente?</span></h2>
+                    <p class="seccion__descripcion">Cuéntanos qué necesitas y te enviamos una cotización sin compromiso en menos de 24 horas.</p>
+                    <ul class="contacto__datos">
+                        <li>📲 <a href="https://wa.me/56912345678" target="_blank" rel="noopener">+56 9 1234 5678</a></li> <!-- ← tu número -->
+                        <li>✉️ <a href="mailto:contacto@advisual.cl">contacto@advisual.cl</a></li> <!-- ← tu correo -->
+                        <li>📍 Santiago, Chile (nos movemos a donde estés)</li>
+                    </ul>
+                </div>
+
+                <!-- Columna derecha: formulario.
+                     MÁS ADELANTE: crea una cuenta gratis en formspree.io, te darán un ID,
+                     y reemplazas TU_ID en action para recibir los mensajes en tu correo.
+                     Mientras tanto, el JS lo convierte en un mensaje de WhatsApp automático. -->
+                <form class="formulario" id="formContacto" action="https://formspree.io/f/TU_ID" method="POST" data-aos="fade-left">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+                    <label for="email">Correo</label>
+                    <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+
+                    <label for="tipo">¿Qué necesitas?</label>
+                    <select id="tipo" name="tipo">
+                        <option>Reels / TikTok</option>
+                        <option>Videoclip</option>
+                        <option>Video corporativo</option>
+                        <option>Cobertura de evento</option>
+                        <option>Solo edición</option>
+                        <option>Otro</option>
+                    </select>
+
+                    <label for="mensaje">Cuéntanos tu idea</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Ej: necesito 3 reels mensuales para mi marca de ropa..." required></textarea>
+
+                    <button type="submit" class="btn btn--primario formulario__boton">Enviar mensaje 🚀</button>
+                    <p class="formulario__nota" id="notaFormulario"></p> <!-- Aquí el JS muestra "mensaje enviado", etc. -->
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         PIE DE PÁGINA
+         ══════════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="contenedor footer__interior">
+            <a href="#inicio" class="nav__logo">AD<span>VISUAL</span></a>
+            <p class="footer__texto">Productora audiovisual · Reels, videoclips y videos que venden.</p>
+            <div class="footer__redes">
+                <!-- Reemplaza los # por los enlaces reales de tus redes -->
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="TikTok">TikTok</a>
+                <a href="#" aria-label="YouTube">YouTube</a>
+            </div>
+            <!-- El año se escribe solo con JS, para que nunca quede desactualizado -->
+            <p class="footer__copy">© <span id="anioActual"></span> Advisual. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp (siempre visible abajo a la derecha) -->
+    <a href="https://wa.me/56912345678?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20video"
+       class="whatsapp" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+
+    <!-- ============ SCRIPTS (siempre al final del body para que la página cargue rápido) ============ -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- Librería de animaciones al scroll -->
+    <script src="js/main.js"></script> <!-- Nuestro JavaScript (la "electricidad" de la casa) -->
+</body>
+</html>

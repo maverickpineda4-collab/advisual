@@ -1,0 +1,18 @@
+# ══════════════════════════════════════════════════════════
+# .gitignore — Archivos que Git debe IGNORAR (nunca se suben)
+# ══════════════════════════════════════════════════════════
+
+# Dependencias: se instalan con "npm install", pesan +100 MB.
+# Subirlas sería como enviar toda la ferretería cuando solo
+# necesitas compartir el plano de la casa.
+node_modules/
+
+# Carpeta de producción: se regenera con "npm run build"
+dist/
+
+# Registros y archivos temporales
+*.log
+
+# Archivos basura de Windows / Mac
+Thumbs.db
+.DS_Store

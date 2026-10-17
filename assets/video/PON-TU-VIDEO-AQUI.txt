@@ -1,0 +1,10 @@
+VIDEO DE PORTADA (HERO)
+========================
+
+1. Exporta un clip corto de tu mejor material (5 a 15 segundos).
+2. Formato recomendado: MP4 (H.264), 1920x1080, máximo ~8 MB
+   (puedes comprimirlo gratis en https://www.freeconvert.com/video-compressor)
+3. Nómbralo exactamente:  hero.mp4
+4. Guárdalo en ESTA carpeta (assets/video/).
+5. En index.html, borra la línea del video de muestra de Google
+   (está marcada con un comentario que dice "BORRA esta línea").

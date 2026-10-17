@@ -1,0 +1,10 @@
+IMÁGENES Y LOGO
+===============
+
+Aquí guardaremos:
+- Tu logo (idealmente PNG con fondo transparente o SVG).
+- Miniaturas reales del portafolio (1280x720 px, formato .jpg o .webp).
+
+Cuando me las mandes, yo las integro al código:
+- El logo reemplaza el texto "ADVISUAL" de la barra de navegación.
+- Las miniaturas reemplazan los degradados de colores del portafolio.
