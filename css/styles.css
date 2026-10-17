@@ -101,7 +101,10 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
    4. BOTONES
    ────────────────────────────────────────────── */
 .btn {
-    display: inline-block;
+    display: inline-flex;               /* Flex para alinear el ícono SVG con el texto */
+    align-items: center;
+    justify-content: center;
+    gap: 9px;                           /* Espacio entre el ícono y el texto */
     padding: 14px 30px;
     border-radius: 50px;                /* 50px en botón bajo = forma de "píldora" */
     font-weight: 600;
@@ -110,6 +113,8 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     cursor: pointer;
     border: none;
 }
+/* Íconos SVG dentro de botones (ej: logo WhatsApp en "Cotizar") */
+.btn svg { width: 17px; height: 17px; flex-shrink: 0; }
 .btn--primario {
     background: var(--degradado);       /* Botón principal con el degradado de marca */
     color: white;
@@ -540,37 +545,7 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 .paso h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .paso p { color: var(--texto-suave); font-size: 0.92rem; }
 
-/* ──────────────────────────────────────────────
-   12. TESTIMONIOS (carrusel)
-   ────────────────────────────────────────────── */
-.carrusel { max-width: 760px; margin: 0 auto; overflow: hidden; }
-.carrusel__pista {
-    display: flex;                     /* Las 3 tarjetas en fila... */
-    transition: transform 0.5s ease;   /* ...y el JS las desliza con transform */
-}
-.testimonio {
-    min-width: 100%;                   /* Cada tarjeta ocupa todo el ancho visible */
-    padding: 44px 40px;
-    background: var(--fondo);
-    border: 1px solid var(--borde);
-    border-radius: var(--radio);
-    text-align: center;
-}
-.testimonio p { font-size: 1.15rem; font-style: italic; margin-bottom: 20px; }
-.testimonio footer { color: var(--acento-2); font-weight: 600; font-size: 0.9rem; }
-
-.carrusel__controles { display: flex; justify-content: center; gap: 12px; margin-top: 26px; }
-.carrusel__controles button {
-    width: 46px; height: 46px;
-    border-radius: 50%;
-    border: 1px solid var(--borde);
-    background: transparent;
-    color: var(--texto);
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: var(--transicion);
-}
-.carrusel__controles button:hover { background: var(--acento); border-color: var(--acento); }
+/* (La sección 12 de testimonios se eliminó: la prueba social es el portafolio) */
 
 /* ──────────────────────────────────────────────
    13. CONTACTO (texto + formulario)
@@ -583,6 +558,9 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 .contacto__info .seccion__titulo, .contacto__info .seccion__etiqueta { text-align: left; }
 .contacto__datos { margin-top: 28px; display: grid; gap: 14px; }
+/* Cada dato: ícono SVG a la izquierda, texto al lado, alineados al centro */
+.contacto__datos li { display: flex; align-items: center; gap: 12px; }
+.contacto__datos svg { width: 19px; height: 19px; color: var(--acento-2); flex-shrink: 0; }
 .contacto__datos a:hover { color: var(--acento-2); }
 
 .formulario {

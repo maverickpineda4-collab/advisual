@@ -115,66 +115,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ──────────────────────────────────────────────
-       7. CARRUSEL DE TESTIMONIOS
-       Desliza la "pista" horizontalmente. Si hay 3 tarjetas,
-       las posiciones son 0%, -100% y -200%.
-       ────────────────────────────────────────────── */
-    const pista = document.getElementById("pistaCarrusel");
-    const totalTestimonios = pista.children.length; // Cuántas tarjetas hay (3)
-    let indice = 0;                                 // Cuál se está mostrando (0 = la primera)
-
-    const mostrarTestimonio = (nuevoIndice) => {
-        // El módulo (%) hace que después de la última vuelva a la primera (y al revés)
-        indice = (nuevoIndice + totalTestimonios) % totalTestimonios;
-        pista.style.transform = `translateX(-${indice * 100}%)`; // Desliza la pista
-    };
-
-    document.getElementById("btnSiguiente").addEventListener("click", () => mostrarTestimonio(indice + 1));
-    document.getElementById("btnAnterior").addEventListener("click", () => mostrarTestimonio(indice - 1));
-
-    // Avance automático cada 6 segundos
-    setInterval(() => mostrarTestimonio(indice + 1), 6000);
-
-    /* ──────────────────────────────────────────────
-       8. FORMULARIO DE CONTACTO
-       Dos modos:
-       a) Si ya configuraste Formspree (cambiaste TU_ID), el
-          formulario se envía normal y te llega al correo.
-       b) Mientras tanto, lo convertimos en un mensaje de
-          WhatsApp con todos los datos ya escritos.
+       7. FORMULARIO DE CONTACTO (doble vía)
+       a) CORREO: cuando pongas tu ID de Formspree en el action
+          del <form>, enviamos los datos por fetch (sin salir de
+          la página) y llegan al correo de Advisual.
+       b) WHATSAPP: además se ofrece avisar por WhatsApp con el
+          mensaje ya escrito (el cliente solo aprieta "enviar").
+          Mientras no haya ID de Formspree, se usa SOLO WhatsApp.
        ────────────────────────────────────────────── */
     const formulario = document.getElementById("formContacto");
     const nota = document.getElementById("notaFormulario");
 
-    formulario.addEventListener("submit", (evento) => {
+    formulario.addEventListener("submit", async (evento) => {
+        evento.preventDefault(); // Siempre manejamos el envío nosotros (sin recargar la página)
+
+        // Leemos lo que escribió el visitante
+        const nombre  = document.getElementById("nombre").value;
+        const correo  = document.getElementById("email").value;
+        const tipo    = document.getElementById("tipo").value;
+        const mensaje = document.getElementById("mensaje").value;
+
+        // Armamos el texto de WhatsApp. encodeURIComponent convierte espacios y
+        // tildes en un formato seguro para URLs (%20, %C3%A9, etc.)
+        const texto = encodeURIComponent(
+            `Hola Advisual 👋 Soy ${nombre} (${correo}). Me interesa: ${tipo}. ${mensaje}`
+        );
+        const linkWhatsApp = `https://wa.me/56953334461?text=${texto}`;
+
         // ¿El action todavía tiene el texto de relleno "TU_ID"?
         const formularioSinConfigurar = formulario.action.includes("TU_ID");
 
         if (formularioSinConfigurar) {
-            evento.preventDefault(); // Frenamos el envío normal (aún no hay dónde recibirlo)
-
-            // Leemos lo que escribió el visitante
-            const nombre  = document.getElementById("nombre").value;
-            const tipo    = document.getElementById("tipo").value;
-            const mensaje = document.getElementById("mensaje").value;
-
-            // Armamos el texto de WhatsApp. encodeURIComponent convierte espacios y
-            // tildes en un formato seguro para URLs (%20, %C3%A9, etc.)
-            const texto = encodeURIComponent(
-                `Hola Advisual 👋 Soy ${nombre}. Me interesa: ${tipo}. ${mensaje}`
-            );
-
-            // Abrimos WhatsApp con el mensaje listo para enviar (número oficial de Advisual)
-            window.open(`https://wa.me/56953334461?text=${texto}`, "_blank");
-
+            // MODO ACTUAL: solo WhatsApp (aún no hay correo configurado)
+            window.open(linkWhatsApp, "_blank");
             nota.textContent = "✅ Te abrimos WhatsApp con tu mensaje listo para enviar.";
-        } else {
-            nota.textContent = "Enviando..."; // Modo Formspree: el envío sigue su curso normal
+            return;
+        }
+
+        // MODO COMPLETO: enviar al correo vía Formspree
+        nota.textContent = "Enviando...";
+        try {
+            const respuesta = await fetch(formulario.action, {
+                method: "POST",
+                body: new FormData(formulario),             // Empaqueta todos los campos del form
+                headers: { "Accept": "application/json" }   // Pedimos JSON (evita redirección)
+            });
+
+            if (!respuesta.ok) throw new Error("Formspree rechazó el envío");
+
+            // Éxito: confirmamos y ofrecemos la vía rápida por WhatsApp
+            nota.innerHTML = `✅ Mensaje enviado al correo de Advisual. ¿Quieres respuesta más rápida? <a href="${linkWhatsApp}" target="_blank" rel="noopener">Avísanos también por WhatsApp →</a>`;
+            formulario.reset(); // Limpiamos los campos
+        } catch (error) {
+            // Si falla el correo (sin internet, servicio caído), WhatsApp salva el contacto
+            window.open(linkWhatsApp, "_blank");
+            nota.textContent = "No pudimos enviar el correo, pero te abrimos WhatsApp con tu mensaje listo.";
         }
     });
 
     /* ──────────────────────────────────────────────
-       9. VISOR DE VIDEO (modal del portafolio)
+       8. VISOR DE VIDEO (modal del portafolio)
        Abre el video de cualquier tarjeta que tenga
        el atributo data-video. Se cierra con el botón ✕,
        haciendo clic en el fondo oscuro o con la tecla Esc.
