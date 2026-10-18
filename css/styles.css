@@ -494,26 +494,8 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 .proyecto__info h3 { font-size: 1rem; margin-bottom: 4px; }
 .proyecto__info p { color: var(--texto-suave); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.5px; }
 
-/* ──────────────────────────────────────────────
-   10. CIFRAS (contadores)
-   ────────────────────────────────────────────── */
-.cifras {
-    background: var(--degradado);
-    padding: 70px 0;
-}
-.cifras__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    text-align: center;
-}
-.cifra__numero, .cifra__mas {
-    font-family: "Sora", sans-serif;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 800;
-    color: #0a0a12;                    /* Números oscuros sobre la cinta de color */
-}
-.cifra p { color: rgba(10, 10, 18, 0.75); font-weight: 600; }
+/* (La sección 10 de cifras/contadores se eliminó:
+    solo mostraremos números reales y verificables) */
 
 /* ──────────────────────────────────────────────
    11. PROCESO (4 pasos)
@@ -707,7 +689,6 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 @media (max-width: 992px) {
     .servicios__grid, .portafolio__grid { grid-template-columns: repeat(2, 1fr); } /* 2 columnas en tablet */
     .proceso__grid { grid-template-columns: repeat(2, 1fr); }
-    .cifras__grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
 }
 
 @media (max-width: 768px) {

@@ -59,37 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* ──────────────────────────────────────────────
-       5. CONTADORES ANIMADOS (la sección de cifras)
-       Cuentan de 0 hasta el número final cuando la
-       sección se hace visible. Usamos IntersectionObserver,
-       que es la forma moderna y eficiente de detectar
-       cuándo algo entra en pantalla.
-       ────────────────────────────────────────────── */
-    const numeros = document.querySelectorAll(".cifra__numero"); // Todos los números a animar
-
-    const observador = new IntersectionObserver((entradas) => {
-        entradas.forEach((entrada) => {
-            if (!entrada.isIntersecting) return; // Si aún no es visible, no hacemos nada
-
-            const elemento = entrada.target;
-            const meta = Number(elemento.dataset.meta); // Número final (viene del HTML: data-meta="120")
-            const duracion = 1600;                       // La cuenta dura 1,6 segundos
-            const inicio = performance.now();            // Momento exacto en que empieza
-
-            // Esta función se ejecuta en cada "cuadro" de la animación (~60 veces/segundo)
-            const avanzar = (ahora) => {
-                const progreso = Math.min((ahora - inicio) / duracion, 1); // 0 → 1
-                elemento.textContent = Math.floor(progreso * meta);        // Número redondeado hacia abajo
-                if (progreso < 1) requestAnimationFrame(avanzar);          // Seguimos hasta llegar a la meta
-            };
-            requestAnimationFrame(avanzar);
-
-            observador.unobserve(elemento); // Ya se animó: dejamos de observarlo (ahorra recursos)
-        });
-    }, { threshold: 0.5 }); // Se activa cuando el 50% del número ya es visible
-
-    numeros.forEach((n) => observador.observe(n)); // Ponemos a todos los números "bajo vigilancia"
+    /* (La sección 5 de contadores animados se eliminó junto con la
+       sección de cifras: solo mostraremos números reales y verificables) */
 
     /* ──────────────────────────────────────────────
        6. FILTRO DEL PORTAFOLIO
