@@ -38,10 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ¿Debemos mostrar la intro?
     const introYaVista = sessionStorage.getItem("introVista"); // Ya se mostró en esta visita
-    const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // Accesibilidad
 
-    if (introYaVista || sinMovimiento) {
-        intro.remove();                          // La quitamos del documento por completo
+    // DECISIÓN DE DISEÑO: la intro se muestra aunque el sistema tenga
+    // "reducir movimiento" activado. El bumper es un video suave de 5 s
+    // (sin parpadeos), es la identidad de una productora audiovisual y
+    // se puede saltar con un clic o tecla. Mucha gente tiene ese ajuste
+    // apagado por rendimiento de Windows, no por sensibilidad real.
+    if (!intro || introYaVista) {
+        if (intro) intro.remove();               // La quitamos del documento por completo
         AOS.init({ duration: 800, once: true, offset: 80 }); // Y arrancamos las animaciones de una
     } else {
         document.body.style.overflow = "hidden"; // Sin scroll mientras la intro está encima
