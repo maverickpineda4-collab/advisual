@@ -227,6 +227,17 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     object-fit: cover;                  /* "Zoom": rellena de esquina a esquina y recorta el sobrante */
     z-index: -2;                        /* Detrás del overlay y del texto */
 }
+/* SOLO CELULARES: el video es 16:9 (horizontal) y en pantalla vertical el "cover"
+   lo recorta tanto que el logo se pierde. Solución:
+   - contain = el video se ve COMPLETO, sin zoom (el logo se aprecia entero)
+   - mix-blend-mode: screen = el negro del video se vuelve transparente y se funde
+     con los gradientes de marca que quedan debajo: nunca se ve un rectángulo */
+@media (max-width: 768px) {
+    .hero__video {
+        object-fit: contain;
+        mix-blend-mode: screen;
+    }
+}
 /* Fondo de RESPALDO del hero (solo se ve si el video no logra cargar):
    dos "manchas" de luz de marca (violeta y cian) flotando lento sobre negro.
    Se anima con transform (lo mueve la tarjeta gráfica = suave y gratis) */
@@ -253,7 +264,22 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
         rgba(7, 7, 13, 0.95) 100%);     /* Abajo: casi negro para fundirse con la sección siguiente */
     z-index: -1;                        /* Encima del video, debajo del texto */
 }
-.hero__contenido { text-align: center; padding-top: 80px; }
+.hero__contenido {
+    text-align: center;
+    padding-top: 80px;
+    position: relative;                 /* Referencia para la viñeta (::before) de abajo */
+}
+/* VIÑETA DE LECTURA: sombra negra suave y translúcida justo detrás del texto.
+   Es un degradado radial (redondo, se desvanece hacia afuera) — oscurece la zona
+   del texto sin formar una "caja" visible. Técnica estándar del cine y la web premium */
+.hero__contenido::before {
+    content: "";
+    position: absolute;
+    inset: -8% -12%;                    /* Un poco más grande que el bloque de texto */
+    background: radial-gradient(ellipse 65% 60% at 50% 50%, rgba(7, 7, 13, 0.78), transparent 72%);
+    z-index: -1;                        /* Detrás del texto, pero ENCIMA del video */
+    pointer-events: none;               /* No interfiere con los clics de los botones */
+}
 
 /* Etiqueta "PRODUCTORA AUDIOVISUAL": texto espaciado con líneas finas a los lados */
 .hero__etiqueta {
@@ -284,18 +310,25 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     font-weight: 800;
     letter-spacing: -1px;                  /* Letras ligeramente juntas = look moderno */
     margin-bottom: 24px;
+    text-shadow: 0 2px 26px rgba(0, 0, 0, 0.85), 0 1px 6px rgba(0, 0, 0, 0.9); /* Sombra de lectura: se lee sobre cualquier video */
 }
 .hero__titulo span {
     background: var(--degradado);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    /* La palabra con degradado no puede usar la sombra heredada (se vería sucia
+       a través de las letras transparentes): usamos drop-shadow, que respeta
+       la forma de las letras con degradado */
+    text-shadow: none;
+    filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.85));
 }
 .hero__subtitulo {
     max-width: 620px;
     margin: 0 auto 40px;
     color: var(--texto-suave);
     font-size: 1.1rem;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.9); /* Sombra de lectura suave */
 }
 .hero__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
