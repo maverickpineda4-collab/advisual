@@ -623,6 +623,39 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 
 /* ──────────────────────────────────────────────
+   15b. INTRO CINEMATOGRÁFICA (bumper del logo)
+   Pantalla negra que cubre todo al entrar; el JS
+   la desvanece cuando el video termina.
+   ────────────────────────────────────────────── */
+.intro {
+    position: fixed;                   /* Cubre toda la pantalla, sobre TODO (más que el visor) */
+    inset: 0;
+    z-index: 1000;
+    background: #000;                  /* Negro puro: se funde con el fondo del video */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.8s ease, visibility 0.8s; /* Desvanecimiento suave al cerrar */
+}
+.intro__video {
+    max-width: min(90vw, 1100px);      /* El logo se ve grande pero nunca cortado */
+    max-height: 78vh;
+    width: 100%;
+    object-fit: contain;               /* Video completo sin recortes (fondo negro = sin bordes) */
+}
+.intro__saltar {
+    color: rgba(255, 255, 255, 0.4);   /* Pista sutil de que se puede saltar */
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulsoSuave 2s infinite; /* Parpadeo suave para que se note */
+}
+@keyframes pulsoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+.intro.oculto { opacity: 0; visibility: hidden; }  /* El JS agrega esta clase al terminar */
+
+/* ──────────────────────────────────────────────
    16. VISOR DE VIDEO (modal a pantalla completa)
    Se abre al hacer clic en una tarjeta del portafolio
    que tenga data-video. Lo controla js/main.js.

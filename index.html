@@ -31,6 +31,21 @@
 <body>
 
     <!-- ══════════════════════════════════════════════════════════════
+         INTRO CINEMATOGRÁFICA (bumper del logo, 5 segundos)
+         Como los logos de estudios antes de una película.
+         Reglas de buen comportamiento (programadas en js/main.js):
+         - Solo aparece UNA vez por visita (sessionStorage)
+         - Clic o cualquier tecla = saltar al instante
+         - Si el video falla, la página se muestra igual
+         ══════════════════════════════════════════════════════════════ -->
+    <div class="intro" id="intro" aria-hidden="true">
+        <!-- object-fit: contain en el CSS = el video se ve completo sin recortes;
+             como el fondo del video es negro puro, se funde con la pantalla -->
+        <video class="intro__video" id="introVideo" src="video/bumper-logo.mp4" muted playsinline preload="auto"></video>
+        <p class="intro__saltar">Clic para saltar</p>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
          BARRA DE NAVEGACIÓN (fija arriba, con efecto vidrio)
          ══════════════════════════════════════════════════════════════ -->
     <header class="nav" id="nav">
