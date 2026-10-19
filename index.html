@@ -31,21 +31,6 @@
 <body>
 
     <!-- ══════════════════════════════════════════════════════════════
-         INTRO CINEMATOGRÁFICA (bumper del logo, 5 segundos)
-         Como los logos de estudios antes de una película.
-         Reglas de buen comportamiento (programadas en js/main.js):
-         - Solo aparece UNA vez por visita (sessionStorage)
-         - Clic o cualquier tecla = saltar al instante
-         - Si el video falla, la página se muestra igual
-         ══════════════════════════════════════════════════════════════ -->
-    <div class="intro" id="intro" aria-hidden="true">
-        <!-- object-fit: contain en el CSS = el video se ve completo sin recortes;
-             como el fondo del video es negro puro, se funde con la pantalla -->
-        <video class="intro__video" id="introVideo" src="video/bumper-logo.mp4" muted playsinline preload="auto"></video>
-        <p class="intro__saltar">Clic para saltar</p>
-    </div>
-
-    <!-- ══════════════════════════════════════════════════════════════
          BARRA DE NAVEGACIÓN (fija arriba, con efecto vidrio)
          ══════════════════════════════════════════════════════════════ -->
     <header class="nav" id="nav">
@@ -106,9 +91,13 @@
 
             <!-- Contenido de la portada -->
             <div class="contenedor hero__contenido">
-                <!-- Logo oficial EN GRANDE (versión blanca con transparencia).
+                <!-- Logo ANIMADO (bumper generado con Higgsfield): se reproduce UNA vez
+                     al cargar y termina en el logo quieto (el <video> mantiene el último
+                     frame). Sin data-aos: el video ya ES la animación.
+                     mix-blend-mode: screen en el CSS = el fondo negro del video se vuelve
+                     transparente y se funde con los gradientes del hero.
                      El logo pequeño de la barra superior se mantiene intacto -->
-                <img src="assets/img/logo-blanco.png" alt="Advisual — Productora audiovisual" class="hero__logo" data-aos="zoom-in">
+                <video class="hero__logo-animado" src="video/bumper-logo.mp4" autoplay muted playsinline role="img" aria-label="Advisual — Productora audiovisual"></video>
 
                 <!-- Etiqueta de categoría: líneas finas a los lados, sin emojis (más profesional) -->
                 <p class="hero__etiqueta" data-aos="fade-down">Productora audiovisual</p>

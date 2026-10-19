@@ -11,60 +11,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* ──────────────────────────────────────────────
-       0. INTRO CINEMATOGRÁFICA (bumper del logo, 5 s)
-       Pantalla negra con el logo animado que se desvanece
-       y revela la página — como los estudios de cine.
-       Reglas de buen comportamiento:
-       - Solo se muestra UNA vez por visita (sessionStorage)
-       - Clic o cualquier tecla = saltar al instante
-       - Si el video falla o el usuario prefiere menos
-         movimiento (ajuste de su sistema), se omite
-       - Seguro anti-bloqueo: máximo 7 s pase lo que pase
-       ────────────────────────────────────────────── */
-    const intro = document.getElementById("intro");
-    const introVideo = document.getElementById("introVideo");
-
-    // Función que revela la página: desvanece la intro y RECIÉN AHORA
-    // arrancan las animaciones de scroll (para que nadie se las pierda detrás del telón)
-    let introTerminada = false;
-    const cerrarIntro = () => {
-        if (introTerminada) return;              // Evita que se ejecute dos veces
-        introTerminada = true;
-        intro.classList.add("oculto");           // El CSS lo desvanece suavemente (0,8 s)
-        introVideo.pause();
-        document.body.style.overflow = "";       // Devolvemos el scroll a la página
-        AOS.init({ duration: 800, once: true, offset: 80 }); // Animaciones arrancan ahora
-    };
-
-    // ¿Debemos mostrar la intro?
-    const introYaVista = sessionStorage.getItem("introVista"); // Ya se mostró en esta visita
-
-    // DECISIÓN DE DISEÑO: la intro se muestra aunque el sistema tenga
-    // "reducir movimiento" activado. El bumper es un video suave de 5 s
-    // (sin parpadeos), es la identidad de una productora audiovisual y
-    // se puede saltar con un clic o tecla. Mucha gente tiene ese ajuste
-    // apagado por rendimiento de Windows, no por sensibilidad real.
-    if (!intro || introYaVista) {
-        if (intro) intro.remove();               // La quitamos del documento por completo
-        AOS.init({ duration: 800, once: true, offset: 80 }); // Y arrancamos las animaciones de una
-    } else {
-        document.body.style.overflow = "hidden"; // Sin scroll mientras la intro está encima
-        sessionStorage.setItem("introVista", "1"); // Marcamos: ya se mostró en esta sesión
-        introVideo.play().catch(() => {});       // Autoplay (muted = el navegador lo permite)
-        introVideo.addEventListener("ended", cerrarIntro);   // Video termina → revelar página
-        intro.addEventListener("click", cerrarIntro);        // Clic = saltar
-        document.addEventListener("keydown", cerrarIntro, { once: true }); // Tecla = saltar
-        introVideo.addEventListener("error", cerrarIntro);   // Video falla → mostrar la página igual
-        setTimeout(cerrarIntro, 7000);           // Seguro: máximo 7 s aunque algo falle
-    }
-
-    /* ──────────────────────────────────────────────
        1. ANIMACIONES AL HACER SCROLL (librería AOS)
-       OJO: AOS se inicializa en la sección 0 (después de la
-       intro), no aquí — si arrancara antes, las animaciones
-       del hero correrían detrás de la pantalla negra y el
-       visitante se las perdería.
+       Lee los atributos data-aos="..." del HTML y anima
+       cada elemento cuando entra en pantalla.
        ────────────────────────────────────────────── */
+    AOS.init({
+        duration: 800,   // Cada animación dura 0,8 segundos
+        once: true,      // Solo la PRIMERA vez (no se repite al subir y bajar)
+        offset: 80,      // Arranca cuando el elemento está a 80px de ser visible
+    });
 
     /* ──────────────────────────────────────────────
        2. AÑO AUTOMÁTICO EN EL FOOTER

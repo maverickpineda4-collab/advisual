@@ -255,11 +255,12 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 .hero__contenido { text-align: center; padding-top: 80px; }
 
-/* Logo grande de la portada: la estrella visual de la página */
-.hero__logo {
-    width: clamp(240px, 42vw, 420px); /* Grande pero fluido: se adapta a cada pantalla */
+/* Logo ANIMADO de la portada (bumper de Higgsfield): la estrella visual de la página */
+.hero__logo-animado {
+    width: clamp(300px, 55vw, 560px); /* Más ancho que el PNG: el logo tiene aire dentro del frame 16:9 */
     margin: 0 auto 30px;              /* Centrado con aire debajo */
-    filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); /* Sombra para levantarlo del video */
+    mix-blend-mode: screen;           /* El negro del video se vuelve transparente sobre el fondo del hero */
+    filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); /* Sombra para levantarlo del fondo */
 }
 
 /* Etiqueta "PRODUCTORA AUDIOVISUAL": texto espaciado con líneas finas a los lados */
@@ -638,39 +639,6 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }  /* ...crece y se desvanece */
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
-
-/* ──────────────────────────────────────────────
-   15b. INTRO CINEMATOGRÁFICA (bumper del logo)
-   Pantalla negra que cubre todo al entrar; el JS
-   la desvanece cuando el video termina.
-   ────────────────────────────────────────────── */
-.intro {
-    position: fixed;                   /* Cubre toda la pantalla, sobre TODO (más que el visor) */
-    inset: 0;
-    z-index: 1000;
-    background: #000;                  /* Negro puro: se funde con el fondo del video */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    transition: opacity 0.8s ease, visibility 0.8s; /* Desvanecimiento suave al cerrar */
-}
-.intro__video {
-    max-width: min(90vw, 1100px);      /* El logo se ve grande pero nunca cortado */
-    max-height: 78vh;
-    width: 100%;
-    object-fit: contain;               /* Video completo sin recortes (fondo negro = sin bordes) */
-}
-.intro__saltar {
-    color: rgba(255, 255, 255, 0.4);   /* Pista sutil de que se puede saltar */
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: pulsoSuave 2s infinite; /* Parpadeo suave para que se note */
-}
-@keyframes pulsoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
-.intro.oculto { opacity: 0; visibility: hidden; }  /* El JS agrega esta clase al terminar */
 
 /* ──────────────────────────────────────────────
    16. VISOR DE VIDEO (modal a pantalla completa)
