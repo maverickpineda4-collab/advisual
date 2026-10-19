@@ -29,3 +29,6 @@ Thumbs.db
 # Videos fuente SIN comprimir (pesan decenas de MB)
 # Al repo solo suben los comprimidos que están en public/video/
 assets/video/*-original.mp4
+
+# Documentos internos/confidenciales (estudio comercial: costos y márgenes)
+assets/documentos/
