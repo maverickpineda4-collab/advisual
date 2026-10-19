@@ -227,6 +227,23 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     object-fit: cover;                  /* Como "background-size: cover" pero para video */
     z-index: -2;                        /* Detrás del overlay y del texto */
 }
+/* Fondo TEMPORAL del hero (mientras llega el video definitivo de Higgsfield):
+   dos "manchas" de luz de marca (violeta y cian) flotando lento sobre negro.
+   Se anima con transform (lo mueve la tarjeta gráfica = suave y gratis) */
+.hero__fondo {
+    position: absolute;
+    inset: -15%;                        /* Más grande que el hero: al moverse nunca se ven los bordes */
+    z-index: -2;                        /* El mismo nivel que ocuparía el video */
+    background:
+        radial-gradient(ellipse 55% 45% at 25% 30%, rgba(124, 92, 255, 0.28), transparent 70%),  /* Luz violeta arriba-izquierda */
+        radial-gradient(ellipse 50% 55% at 78% 65%, rgba(34, 211, 238, 0.20), transparent 70%),  /* Luz cian abajo-derecha */
+        #07070d;                                                                                 /* Base: el negro de marca */
+    animation: fondoFlotar 18s ease-in-out infinite alternate; /* Deriva lenta de ida y vuelta */
+}
+@keyframes fondoFlotar {
+    from { transform: translate3d(0, 0, 0) scale(1); }        /* Posición inicial... */
+    to   { transform: translate3d(3%, 4%, 0) scale(1.06); }   /* ...deriva + leve zoom: efecto "respiración" */
+}
 .hero__overlay {
     position: absolute;
     inset: 0;                           /* Cubre todo (equivale a top/right/bottom/left = 0) */

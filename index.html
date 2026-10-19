@@ -89,17 +89,17 @@
              ══════════════════════════════════════════════════════════════ -->
         <section class="hero" id="inicio">
 
-            <!-- VIDEO DE FONDO:
-                 autoplay = arranca solo | muted = sin sonido (OBLIGATORIO para que el navegador lo deje reproducir)
-                 loop = se repite | playsinline = no abre pantalla completa en iPhone -->
+            <!-- FONDO DEL HERO (temporal): gradientes animados violeta/cian con CSS puro.
+                 Elegante, liviano y 100% de marca mientras generas el video definitivo.
+                 ══ CUANDO TENGAS TU VIDEO (Higgsfield: ambiente abstracto, SIN logo,
+                 pensado para loop infinito) ══
+                 1) Me lo pasas y lo guardamos como public/video/hero.mp4
+                 2) Borramos el div hero__fondo y activamos este <video>:
             <video class="hero__video" autoplay muted loop playsinline>
-                <!-- Opción 1: tu propio video. Graba/exporta un clip corto (5-15 s), llámalo hero.mp4
-                     y guárdalo en la carpeta assets/video/ -->
                 <source src="assets/video/hero.mp4" type="video/mp4">
-                <!-- Opción 2 (respaldo temporal): video de muestra de internet para que veas el efecto YA.
-                     Cuando tengas tu video, BORRA esta línea -->
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
             </video>
+            -->
+            <div class="hero__fondo" aria-hidden="true"></div>
 
             <!-- Capa oscura encima del video para que el texto se lea bien -->
             <div class="hero__overlay"></div>
