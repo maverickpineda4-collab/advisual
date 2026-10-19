@@ -86,6 +86,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ──────────────────────────────────────────────
+       6b. FILTROS DEL CATÁLOGO DE PRECIOS
+       Misma lógica del portafolio, pero con clases propias
+       (.filtro-precio / .tarifa) para que ambos filtros
+       funcionen de forma independiente y no se pisen.
+       ────────────────────────────────────────────── */
+    const botonesPrecio = document.querySelectorAll(".filtro-precio");
+    const tarifas = document.querySelectorAll(".tarifa");
+
+    botonesPrecio.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            // Marcamos visualmente el botón presionado
+            botonesPrecio.forEach((b) => b.classList.remove("activo"));
+            boton.classList.add("activo");
+
+            const categoria = boton.dataset.filtro; // "todos", "negocios", "eventos", "material"
+
+            tarifas.forEach((tarifa) => {
+                // data-cat puede tener VARIAS categorías separadas por espacio
+                const coincide = categoria === "todos" || tarifa.dataset.cat.split(" ").includes(categoria);
+                tarifa.classList.toggle("oculto", !coincide);
+            });
+        });
+    });
+
+    /* ──────────────────────────────────────────────
        7. FORMULARIO DE CONTACTO (doble vía)
        a) CORREO: cuando pongas tu ID de Formspree en el action
           del <form>, enviamos los datos por fetch (sin salir de

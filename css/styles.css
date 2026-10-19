@@ -658,6 +658,157 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 }
 
 /* ──────────────────────────────────────────────
+   15c. PRECIOS (catálogo comercial — Lanzamiento)
+   MOBILE-FIRST: se diseña primero para celular
+   (1 columna) y luego crece a tablet (2) y PC (3).
+   ────────────────────────────────────────────── */
+.precios__grid {
+    display: grid;
+    grid-template-columns: 1fr;         /* Celular: una tarjeta por fila */
+    gap: 24px;
+}
+@media (min-width: 700px)  { .precios__grid { grid-template-columns: repeat(2, 1fr); } } /* Tablet */
+@media (min-width: 1100px) { .precios__grid { grid-template-columns: repeat(3, 1fr); } } /* PC */
+
+.tarifa {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 34px 26px;
+    display: flex;
+    flex-direction: column;             /* Columna flexible: el botón siempre queda abajo */
+    position: relative;
+    transition: var(--transicion);
+}
+.tarifa:hover { transform: translateY(-6px); border-color: var(--acento); }
+
+/* Tarjeta DESTACADA (Pack Emprendedor): borde con el degradado de marca.
+   Truco CSS: un fondo sólido "por dentro" (padding-box) y el degradado
+   asomando por el borde (border-box) */
+.tarifa--destacada {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--superficie), var(--superficie)) padding-box,
+                var(--degradado) border-box;
+}
+.tarifa__badge {
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--degradado);
+    color: #ffffff;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    white-space: nowrap;                /* La etiqueta nunca se parte en dos líneas */
+}
+
+.tarifa h3 { font-size: 1.3rem; margin-bottom: 8px; }
+.tarifa__objetivo { color: var(--texto-suave); font-size: 0.95rem; margin-bottom: 22px; }
+
+/* Caja del precio: tinte violeta suave para que el ojo caiga ahí primero */
+.tarifa__precio {
+    background: rgba(124, 92, 255, 0.07);
+    border: 1px solid rgba(124, 92, 255, 0.18);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+}
+.tarifa__cuando {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--acento-2);
+    margin-bottom: 4px;
+}
+.tarifa__monto { color: var(--texto-suave); font-size: 0.9rem; }
+.tarifa__monto strong {
+    font-family: "Sora", sans-serif;
+    font-size: 2.1rem; font-weight: 800;
+    color: var(--texto);
+}
+.tarifa__monto small { font-size: 0.72rem; }
+.tarifa__regular { font-size: 0.8rem; color: var(--texto-suave); margin-top: 8px; }
+.tarifa__ahorro {                       /* Pastilla cian: el ahorro del lanzamiento */
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--acento-2);
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    padding: 4px 12px;
+    border-radius: 50px;
+}
+/* Variantes dentro de una misma tarjeta (P04 y P01 tienen dos precios) */
+.tarifa__variante + .tarifa__variante {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--borde);
+}
+.tarifa__variante-nombre { font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+
+.tarifa__lista { margin: 0 0 18px; padding: 0; list-style: none; }
+.tarifa__lista li {
+    padding: 5px 0 5px 26px;
+    position: relative;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+.tarifa__lista li::before {
+    content: "✓";
+    position: absolute; left: 0;
+    color: var(--acento-2); font-weight: 700;
+}
+
+/* Detalle expandible NATIVO de HTML (<details>): se abre con un toque,
+   no necesita JavaScript — perfecto para celular */
+.tarifa__detalle {
+    margin-bottom: 20px;
+    border-top: 1px dashed var(--borde);
+    padding-top: 14px;
+}
+.tarifa__detalle summary {
+    cursor: pointer;
+    color: var(--acento-2);
+    font-size: 0.88rem; font-weight: 600;
+}
+.tarifa__detalle ul { margin: 12px 0 0; padding-left: 18px; }
+.tarifa__detalle li { color: var(--texto-suave); font-size: 0.86rem; padding: 3px 0; }
+.tarifa__plazo { font-size: 0.82rem; color: var(--texto); margin-top: 10px; }
+
+.tarifa__cta { margin-top: auto; width: 100%; text-align: center; }
+
+.tarifa.oculto { display: none; }       /* La agrega/quita el filtro de precios (JS) */
+
+/* Botones de filtro del catálogo: MISMO look que los del portafolio,
+   pero con clase propia (.filtro-precio) para que el JS de cada
+   filtro trabaje independiente y no se pisen entre sí */
+.filtro-precio {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto-suave);
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.filtro-precio:hover { border-color: var(--acento); color: var(--texto); }
+.filtro-precio.activo {
+    background: var(--degradado);
+    border-color: transparent;
+    color: white;
+}
+
+.precios__nota {
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-top: 44px;
+}
+.precios__nota a { color: var(--acento-2); }
+
+/* ──────────────────────────────────────────────
    16. VISOR DE VIDEO (modal a pantalla completa)
    Se abre al hacer clic en una tarjeta del portafolio
    que tenga data-video. Lo controla js/main.js.

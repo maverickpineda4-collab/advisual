@@ -47,6 +47,7 @@
                 <a href="#inicio"      class="nav__link">Inicio</a>
                 <a href="#servicios"   class="nav__link">Servicios</a>
                 <a href="#portafolio"  class="nav__link">Portafolio</a>
+                <a href="#precios"     class="nav__link">Precios</a>
                 <a href="#proceso"     class="nav__link">Proceso</a>
                 <a href="#contacto"    class="nav__link">Contacto</a>
             </nav>
@@ -294,6 +295,333 @@
                     </article>
 
                 </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECCIÓN PRECIOS (catálogo comercial — Lanzamiento Advisual)
+             Estrategia según el estudio comercial:
+             - Cada tarjeta muestra AMBOS precios: lanzamiento (grande) +
+               tarifa regular prevista (pequeña, SIN tachar: es una tarifa
+               futura, no un "antes" — transparencia estilo SERNAC)
+             - Orden: Pack Emprendedor primero (protagonista), luego el resto
+             - Filtros por necesidad del cliente, no por formato técnico
+             - Detalle expandible nativo (<details>): funciona sin JS,
+               perfecto para celular
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="seccion" id="precios">
+            <div class="contenedor">
+
+                <div class="seccion__encabezado" data-aos="fade-up">
+                    <p class="seccion__etiqueta">Precios</p>
+                    <h2 class="seccion__titulo">Precios de <span>lanzamiento</span></h2>
+                    <p class="seccion__descripcion">
+                        Lanzamiento Advisual: tarifas de inauguración para las primeras 5 contrataciones
+                        (una por cliente) o durante 30 días desde el lanzamiento, lo que ocurra primero.
+                        Todos los precios incluyen IVA.
+                    </p>
+                </div>
+
+                <!-- Filtros del catálogo: clases propias (.filtro-precio) para no
+                     mezclarse con los filtros del portafolio (cada uno con su JS) -->
+                <div class="filtros" data-aos="fade-up">
+                    <button class="filtro-precio activo" data-filtro="todos">Todos</button>
+                    <button class="filtro-precio" data-filtro="negocios">Negocios</button>
+                    <button class="filtro-precio" data-filtro="eventos">Eventos y personas</button>
+                    <button class="filtro-precio" data-filtro="material">Ya tengo material</button>
+                </div>
+
+                <div class="precios__grid">
+
+                    <!-- ══ P03 · PACK EMPRENDEDOR (la estrella: va primero y destacada) ══ -->
+                    <article class="tarifa tarifa--destacada" data-cat="negocios" data-aos="fade-up">
+                        <span class="tarifa__badge">Recomendado para empezar</span>
+                        <h3>Pack Emprendedor · 4 Reels</h3>
+                        <p class="tarifa__objetivo">Cuatro reels para tu negocio, grabados en una sola visita y listos para publicar.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$219.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $349.990</p>
+                            <span class="tarifa__ahorro">Ahorras $130.000 (37%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>4 reels verticales de 15-30 segundos</li>
+                            <li>1 visita de hasta 2 horas</li>
+                            <li>Subtítulos y portadas incluidas</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>4 ideas breves aprobadas contigo antes de grabar</li>
+                                <li>Grabación con teléfono y estabilizador + edición</li>
+                                <li>Una persona, una ubicación, montaje incluido</li>
+                                <li>1 ronda consolidada de cambios</li>
+                                <li>No incluye set Pro, dron, actores ni visitas extra</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 5 a 7 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20el%20Pack%20Emprendedor%20de%204%20reels" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar mis cuatro reels</a>
+                    </article>
+
+                    <!-- ══ P02 · REEL ESENCIAL ══ -->
+                    <article class="tarifa" data-cat="negocios" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Reel Esencial</h3>
+                        <p class="tarifa__objetivo">Un reel para comunicar una idea de tu negocio, grabado en una visita.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$89.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $149.990</p>
+                            <span class="tarifa__ahorro">Ahorras $60.000 (40%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>1 reel vertical de 15-30 segundos</li>
+                            <li>Hasta 1 hora en el lugar</li>
+                            <li>Subtítulos y portada incluidos</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>Pauta breve, grabación con teléfono y estabilizador</li>
+                                <li>Edición sencilla, subtítulos y portada del video</li>
+                                <li>Una persona, una ubicación, montaje incluido</li>
+                                <li>1 ronda de cambios</li>
+                                <li>No incluye set Pro, dron, actores ni segunda visita</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 3 a 5 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20Reel%20Esencial" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar mi reel</a>
+                    </article>
+
+                    <!-- ══ P04 · PRODUCCIÓN PRO (dos variantes en una tarjeta) ══ -->
+                    <article class="tarifa" data-cat="negocios" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Producción Pro</h3>
+                        <p class="tarifa__objetivo">Preparamos el mensaje y el set para mostrar tu marca con cámara, luz y sonido cuidados.</p>
+
+                        <div class="tarifa__precio">
+                            <!-- Variante 1: un reel -->
+                            <div class="tarifa__variante">
+                                <p class="tarifa__variante-nombre">Reel Pro</p>
+                                <p class="tarifa__monto">desde <strong>$329.990</strong> <small>IVA incluido</small></p>
+                                <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $499.990</p>
+                                <span class="tarifa__ahorro">Ahorras $170.000 (34%)</span>
+                            </div>
+                            <!-- Variante 2: pack de cuatro -->
+                            <div class="tarifa__variante">
+                                <p class="tarifa__variante-nombre">Pack Pro · 4 reels</p>
+                                <p class="tarifa__monto">desde <strong>$499.990</strong> <small>IVA incluido</small></p>
+                                <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $749.990</p>
+                                <span class="tarifa__ahorro">Ahorras $250.000 (33%)</span>
+                            </div>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>Guion breve + cámara, luz y audio Pro</li>
+                            <li>Equipo de 2 personas en el rodaje</li>
+                            <li>2 rondas de cambios incluidas</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>Reel Pro: video vertical hasta 45 s, hasta 3 h en el lugar (7-10 días hábiles)</li>
+                                <li>Pack Pro 4: cuatro videos de hasta 45 s, hasta 5 h en el lugar (10-15 días hábiles)</li>
+                                <li>Planificación, edición, color, sonido, subtítulos y portadas</li>
+                                <li>No incluye dron, actores, maquillaje ni locación arrendada</li>
+                            </ul>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20la%20Producci%C3%B3n%20Pro" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar producción Pro</a>
+                    </article>
+
+                    <!-- ══ P05 · VIDEO DE NEGOCIO ══ -->
+                    <article class="tarifa" data-cat="negocios" data-aos="fade-up">
+                        <h3>Video de Negocio</h3>
+                        <p class="tarifa__objetivo">Explica qué hace tu negocio y por qué elegirlo, con una versión breve para redes.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$549.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $849.990</p>
+                            <span class="tarifa__ahorro">Ahorras $300.000 (35%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>Video horizontal de 60-90 segundos</li>
+                            <li>+ Recorte vertical de 15-30 s para redes</li>
+                            <li>Entrevista, guion y títulos incluidos</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>Entrevista a una persona + imágenes de apoyo</li>
+                                <li>2 personas de equipo, una ubicación, hasta 5 h</li>
+                                <li>Color, sonido y subtítulos incluidos</li>
+                                <li>2 rondas consolidadas de cambios</li>
+                                <li>No incluye dron, locutor contratado ni varias sedes</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 10 a 15 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20Video%20de%20Negocio" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar video de mi negocio</a>
+                    </article>
+
+                    <!-- ══ P06 · EVENTO ESENCIAL ══ -->
+                    <article class="tarifa" data-cat="eventos" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Evento Esencial</h3>
+                        <p class="tarifa__objetivo">Un resumen de los momentos principales de tu evento y una pieza breve para compartir.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$379.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $599.990</p>
+                            <span class="tarifa__ahorro">Ahorras $220.000 (37%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>Hasta 3 horas de cobertura, 2 personas</li>
+                            <li>Resumen horizontal de 60-90 segundos</li>
+                            <li>+ Recorte vertical de 15-30 s</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>30 minutos previos de montaje del equipo</li>
+                                <li>Edición, color, sonido y música adecuada al uso</li>
+                                <li>2 rondas de cambios</li>
+                                <li>No incluye transmisión en vivo, fotografía ni bodas</li>
+                                <li>Más horas se presupuestan antes de reservar</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 7 a 10 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20Evento%20Esencial" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar mi evento</a>
+                    </article>
+
+                    <!-- ══ P07 · VIDEOCLIP ══ -->
+                    <article class="tarifa" data-cat="eventos" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Videoclip</h3>
+                        <p class="tarifa__objetivo">Un videoclip para tu canción, con concepto visual y rodaje planificados.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$599.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $899.990</p>
+                            <span class="tarifa__ahorro">Ahorras $300.000 (33%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>Videoclip horizontal (canción hasta 4 min)</li>
+                            <li>+ Teaser vertical de 15-30 s</li>
+                            <li>Concepto y planificación de tomas</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>2 personas, una ubicación, hasta 5 h de rodaje</li>
+                                <li>Edición, sincronización y color</li>
+                                <li>2 rondas de cambios</li>
+                                <li>El artista entrega el máster final y confirma derechos</li>
+                                <li>Actores, vestuario o efectos complejos se cotizan aparte</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 15 a 20 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20un%20Videoclip" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar mi videoclip</a>
+                    </article>
+
+                    <!-- ══ P08 · MATRIMONIO ESENCIAL ══ -->
+                    <article class="tarifa" data-cat="eventos" data-aos="fade-up">
+                        <h3>Matrimonio Esencial</h3>
+                        <p class="tarifa__objetivo">Cuatro horas para guardar los momentos elegidos de tu matrimonio, con resumen y teaser.</p>
+
+                        <div class="tarifa__precio">
+                            <p class="tarifa__cuando">Precio de lanzamiento</p>
+                            <p class="tarifa__monto">desde <strong>$449.990</strong> <small>IVA incluido</small></p>
+                            <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $699.990</p>
+                            <span class="tarifa__ahorro">Ahorras $250.000 (36%)</span>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>4 horas de cobertura, 2 personas</li>
+                            <li>Resumen horizontal de 3-4 minutos</li>
+                            <li>+ Teaser vertical de 20-30 s</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>Reunión previa, pauta y respaldo del material</li>
+                                <li>Una ubicación: ceremonia, cóctel u otro tramo</li>
+                                <li>Edición, color y sonido incluidos</li>
+                                <li>2 rondas de cambios</li>
+                                <li>No incluye fotografía, dron ni jornada completa</li>
+                            </ul>
+                            <p class="tarifa__plazo">Primera versión: 20 a 30 días hábiles</p>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20cotizar%20el%20Matrimonio%20Esencial" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Cotizar Matrimonio Esencial</a>
+                    </article>
+
+                    <!-- ══ P01 · EDICIÓN (va último por estrategia: no encabezar con lo más barato) ══ -->
+                    <article class="tarifa" data-cat="material" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Edición y Mejora de Video</h3>
+                        <p class="tarifa__objetivo">¿Ya tienes grabaciones? Envíanos una muestra y te indicamos qué edición necesita tu video.</p>
+
+                        <div class="tarifa__precio">
+                            <!-- Variante 1: edición básica -->
+                            <div class="tarifa__variante">
+                                <p class="tarifa__variante-nombre">Edición básica</p>
+                                <p class="tarifa__monto">desde <strong>$49.990</strong> <small>IVA incluido</small></p>
+                                <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $79.990</p>
+                                <span class="tarifa__ahorro">Ahorras $30.000 (38%)</span>
+                            </div>
+                            <!-- Variante 2: mejora -->
+                            <div class="tarifa__variante">
+                                <p class="tarifa__variante-nombre">Mejora de video</p>
+                                <p class="tarifa__monto">desde <strong>$89.990</strong> <small>IVA incluido</small></p>
+                                <p class="tarifa__regular">Tarifa regular al terminar el lanzamiento: $139.990</p>
+                                <span class="tarifa__ahorro">Ahorras $50.000 (36%)</span>
+                            </div>
+                        </div>
+
+                        <ul class="tarifa__lista">
+                            <li>Video de hasta 60 segundos</li>
+                            <li>Recibimos hasta 5 min de material</li>
+                            <li>Música y subtítulos incluidos</li>
+                        </ul>
+
+                        <details class="tarifa__detalle">
+                            <summary>Qué incluye y condiciones</summary>
+                            <ul>
+                                <li>Básica: cortes, orden de tomas, color y volumen (3-5 días hábiles)</li>
+                                <li>Mejora: + tratamiento de ruido, color, estabilidad o escalado (5-7 días hábiles)</li>
+                                <li>1 ronda de cambios</li>
+                                <li>La calidad final depende del material original</li>
+                            </ul>
+                        </details>
+
+                        <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20evaluar%20mi%20material%20para%20edici%C3%B3n" target="_blank" rel="noopener" class="btn btn--primario tarifa__cta">Evaluar mi material</a>
+                    </article>
+
+                </div>
+
+                <!-- Nota de confianza: condiciones de pago claras + puerta a proyectos a medida -->
+                <p class="precios__nota" data-aos="fade-up">
+                    Reserva tu fecha con el 50% y el resto antes de la entrega final.
+                    ¿Necesitas algo distinto? <a href="https://wa.me/56953334461?text=Hola%20Advisual%2C%20quiero%20conversar%20un%20proyecto%20a%20medida" target="_blank" rel="noopener">Conversemos un proyecto a medida</a>.
+                </p>
+
             </div>
         </section>
 
