@@ -227,17 +227,9 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     object-fit: cover;                  /* "Zoom": rellena de esquina a esquina y recorta el sobrante */
     z-index: -2;                        /* Detrás del overlay y del texto */
 }
-/* SOLO CELULARES: el video es 16:9 (horizontal) y en pantalla vertical el "cover"
-   lo recorta tanto que el logo se pierde. Solución:
-   - contain = el video se ve COMPLETO, sin zoom (el logo se aprecia entero)
-   - mix-blend-mode: screen = el negro del video se vuelve transparente y se funde
-     con los gradientes de marca que quedan debajo: nunca se ve un rectángulo */
-@media (max-width: 768px) {
-    .hero__video {
-        object-fit: contain;
-        mix-blend-mode: screen;
-    }
-}
+/* NOTA móvil: el celular recibe un video VERTICAL (9:16) elegido desde el HTML
+   (<source media="(max-width: 768px)">), así que el mismo "cover" de arriba
+   llena la pantalla del teléfono de esquina a esquina, sin reglas extra. */
 /* Fondo de RESPALDO del hero (solo se ve si el video no logra cargar):
    dos "manchas" de luz de marca (violeta y cian) flotando lento sobre negro.
    Se anima con transform (lo mueve la tarjeta gráfica = suave y gratis) */
