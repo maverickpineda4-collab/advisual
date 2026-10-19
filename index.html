@@ -74,30 +74,27 @@
              ══════════════════════════════════════════════════════════════ -->
         <section class="hero" id="inicio">
 
-            <!-- FONDO DEL HERO (temporal): gradientes animados violeta/cian con CSS puro.
-                 Elegante, liviano y 100% de marca mientras generas el video definitivo.
-                 ══ CUANDO TENGAS TU VIDEO (Higgsfield: ambiente abstracto, SIN logo,
-                 pensado para loop infinito) ══
-                 1) Me lo pasas y lo guardamos como public/video/hero.mp4
-                 2) Borramos el div hero__fondo y activamos este <video>:
-            <video class="hero__video" autoplay muted loop playsinline>
-                <source src="assets/video/hero.mp4" type="video/mp4">
-            </video>
-            -->
+            <!-- FONDO DE RESPALDO (gradientes animados de marca): queda debajo de todo.
+                 Solo se ve si el video no logra cargar — nunca sobra tener plan B -->
             <div class="hero__fondo" aria-hidden="true"></div>
+
+            <!-- VIDEO DE FONDO DEL HERO: el bumper animado del logo (hecho en Higgsfield).
+                 - object-fit: cover (CSS) = "zoom" que rellena la portada de ESQUINA A
+                   ESQUINA recortando lo que sobre: jamás se ve el rectángulo del video
+                 - loop = se repite en bucle infinito
+                 - muted + playsinline = el navegador permite el autoplay
+                 - aria-hidden = es decorativo; el contenido real es el texto encima
+                 ══ Si más adelante generas un video ambiental (sin logo) para este fondo,
+                 solo cambia el src por video/hero.mp4 ══ -->
+            <video class="hero__video" autoplay muted loop playsinline aria-hidden="true">
+                <source src="video/bumper-logo.mp4" type="video/mp4">
+            </video>
 
             <!-- Capa oscura encima del video para que el texto se lea bien -->
             <div class="hero__overlay"></div>
 
             <!-- Contenido de la portada -->
             <div class="contenedor hero__contenido">
-                <!-- Logo ANIMADO (bumper generado con Higgsfield): se reproduce UNA vez
-                     al cargar y termina en el logo quieto (el <video> mantiene el último
-                     frame). Sin data-aos: el video ya ES la animación.
-                     mix-blend-mode: screen en el CSS = el fondo negro del video se vuelve
-                     transparente y se funde con los gradientes del hero.
-                     El logo pequeño de la barra superior se mantiene intacto -->
-                <video class="hero__logo-animado" src="video/bumper-logo.mp4" autoplay muted playsinline role="img" aria-label="Advisual — Productora audiovisual"></video>
 
                 <!-- Etiqueta de categoría: líneas finas a los lados, sin emojis (más profesional) -->
                 <p class="hero__etiqueta" data-aos="fade-down">Productora audiovisual</p>

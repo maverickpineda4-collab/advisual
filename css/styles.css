@@ -224,16 +224,16 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);   /* Truco para centrar perfectamente un elemento absoluto */
     min-width: 100%; min-height: 100%;  /* Cubre toda la sección sin dejar huecos */
-    object-fit: cover;                  /* Como "background-size: cover" pero para video */
+    object-fit: cover;                  /* "Zoom": rellena de esquina a esquina y recorta el sobrante */
     z-index: -2;                        /* Detrás del overlay y del texto */
 }
-/* Fondo TEMPORAL del hero (mientras llega el video definitivo de Higgsfield):
+/* Fondo de RESPALDO del hero (solo se ve si el video no logra cargar):
    dos "manchas" de luz de marca (violeta y cian) flotando lento sobre negro.
    Se anima con transform (lo mueve la tarjeta gráfica = suave y gratis) */
 .hero__fondo {
     position: absolute;
     inset: -15%;                        /* Más grande que el hero: al moverse nunca se ven los bordes */
-    z-index: -2;                        /* El mismo nivel que ocuparía el video */
+    z-index: -2;                        /* El mismo nivel que el video (queda debajo de él) */
     background:
         radial-gradient(ellipse 55% 45% at 25% 30%, rgba(124, 92, 255, 0.28), transparent 70%),  /* Luz violeta arriba-izquierda */
         radial-gradient(ellipse 50% 55% at 78% 65%, rgba(34, 211, 238, 0.20), transparent 70%),  /* Luz cian abajo-derecha */
@@ -254,14 +254,6 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
     z-index: -1;                        /* Encima del video, debajo del texto */
 }
 .hero__contenido { text-align: center; padding-top: 80px; }
-
-/* Logo ANIMADO de la portada (bumper de Higgsfield): la estrella visual de la página */
-.hero__logo-animado {
-    width: clamp(300px, 55vw, 560px); /* Más ancho que el PNG: el logo tiene aire dentro del frame 16:9 */
-    margin: 0 auto 30px;              /* Centrado con aire debajo */
-    mix-blend-mode: screen;           /* El negro del video se vuelve transparente sobre el fondo del hero */
-    filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); /* Sombra para levantarlo del fondo */
-}
 
 /* Etiqueta "PRODUCTORA AUDIOVISUAL": texto espaciado con líneas finas a los lados */
 .hero__etiqueta {
