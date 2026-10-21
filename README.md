@@ -58,7 +58,7 @@ Cada vez que guardes un cambio en VS Code, la página se recarga sola (hot reloa
 | Correo de contacto | `index.html` (sección contacto) | ✅ Configurado: contacto@advisual.cl |
 | Colores de marca | `css/styles.css` (arriba, en `:root`) | Edita `--acento` y `--acento-2` si quieres otros |
 | Cifras de los contadores | `index.html` (sección cifras) | Edita los `data-meta` con tus números reales |
-| Formulario por correo | `index.html` (form) | ⏳ Reemplaza `TU_ID` (créalo gratis en formspree.io) |
+| Formulario por correo | `index.html` (form) | ✅ Configurado: Formspree ID `mwlvgwly` |
 
 ## 🚀 Publicación (cuando lleguemos a la fase 6)
 
