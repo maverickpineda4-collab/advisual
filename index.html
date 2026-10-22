@@ -6,9 +6,77 @@
     <meta charset="UTF-8"> <!-- Permite tildes y eñes sin que se vean símbolos raros -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la web se adapte a celulares (responsive) -->
 
-    <!-- SEO: lo que aparece en Google cuando alguien busca "advisual" -->
-    <title>Advisual — Productora Audiovisual | Reels, Videoclips y Videos</title>
-    <meta name="description" content="Advisual: productora audiovisual especializada en reels, videoclips, videos corporativos y cobertura de eventos. Historias que se ven increíbles.">
+    <!-- ══════════════ SEO: CÓMO NOS VE GOOGLE ══════════════ -->
+    <!-- El <title> es el enlace azul grande en los resultados de Google.
+         Regla práctica: máx. ~60 caracteres, marca + servicios clave. -->
+    <title>Advisual — Productora Audiovisual en Chile | Reels, Videoclips y Eventos</title>
+
+    <!-- La description es el texto gris bajo el título en Google (~155 caracteres).
+         No sube el ranking por sí sola, pero una buena hace que más gente haga clic. -->
+    <meta name="description" content="Productora audiovisual en Chile: reels y TikTok, videoclips musicales, videos corporativos y cobertura de eventos. Producción completa: idea, rodaje y postproducción. Cotiza tu video hoy.">
+
+    <!-- canonical: le dice a Google "ESTA es la dirección oficial del sitio"
+         (evita que considere duplicadas versiones con www, http, etc.) -->
+    <link rel="canonical" href="https://advisual.cl/">
+
+    <!-- robots: permiso explícito para que Google indexe todo y siga los enlaces -->
+    <meta name="robots" content="index, follow">
+
+    <!-- ══════════════ OPEN GRAPH: CÓMO SE VE AL COMPARTIR EL LINK ══════════════ -->
+    <!-- Cuando alguien pega advisual.cl en WhatsApp, Instagram o Facebook,
+         estas etiquetas generan la tarjeta bonita con logo, título y texto -->
+    <meta property="og:type" content="website"> <!-- Es un sitio web, no un artículo -->
+    <meta property="og:url" content="https://advisual.cl/"> <!-- Dirección oficial que se comparte -->
+    <meta property="og:site_name" content="Advisual"> <!-- Nombre de la marca en la tarjeta -->
+    <meta property="og:title" content="Advisual — Productora Audiovisual en Chile">
+    <meta property="og:description" content="Reels, videoclips musicales, videos corporativos y cobertura de eventos. Historias que se ven increíbles.">
+    <!-- OJO: og-image.jpg vive en la carpeta public/ (Vite la copia tal cual a la raíz
+         del sitio). Las imágenes de assets/ cambian de nombre al compilar, por eso
+         las URLs absolutas de SEO apuntan a la raíz, no a assets/ -->
+    <meta property="og:image" content="https://advisual.cl/og-image.jpg"> <!-- La tarjeta visual (1200×630) -->
+    <meta property="og:image:width" content="1200"> <!-- Tamaño declarado: WhatsApp lo exige para mostrarla bien -->
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_CL"> <!-- Contenido en español de Chile -->
+
+    <!-- ══════════════ TWITTER/X: lo mismo pero para esa red ══════════════ -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- Tarjeta grande con imagen -->
+    <meta name="twitter:title" content="Advisual — Productora Audiovisual en Chile">
+    <meta name="twitter:description" content="Reels, videoclips, videos corporativos y eventos. Historias que se ven increíbles.">
+    <meta name="twitter:image" content="https://advisual.cl/og-image.jpg">
+
+    <!-- ══════════════ DATOS GEO (refuerzan que somos un negocio de Chile) ══════════════ -->
+    <meta name="geo.region" content="CL"> <!-- País: Chile -->
+    <meta name="geo.placename" content="Chile">
+
+    <!-- ══════════════ DATOS ESTRUCTURADOS (JSON-LD): "hablarle a Google en su idioma" ══════════════ -->
+    <!-- Bloque invisible para el usuario. Google lo lee y entiende: esto es un
+         negocio, qué servicios ofrece, dónde está y cuáles son sus redes.
+         Puede generar resultados enriquecidos (panel de negocio, enlaces extra). -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Advisual",
+        "description": "Productora audiovisual en Chile: reels y TikTok, videoclips musicales, videos corporativos y cobertura de eventos.",
+        "url": "https://advisual.cl/",
+        "logo": "https://advisual.cl/logo-blanco.png",
+        "image": "https://advisual.cl/og-image.jpg",
+        "email": "contacto@advisual.cl",
+        "telephone": "+56953334461",
+        "areaServed": { "@type": "Country", "name": "Chile" },
+        "address": { "@type": "PostalAddress", "addressCountry": "CL" },
+        "sameAs": [
+            "https://www.instagram.com/advisualcl/",
+            "https://www.youtube.com/@AdVisual-h1b"
+        ],
+        "makesOffer": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reels y TikTok" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videoclips musicales" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videos corporativos" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cobertura de eventos" } }
+        ]
+    }
+    </script>
 
     <!-- Icono de la pestaña del navegador: isotipo AV blanco sobre cuadro oscuro
          (lo generamos desde assets/img/favicon.png con el script procesar-logo.py) -->

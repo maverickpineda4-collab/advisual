@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ══════════════════════════════════════════════════════════════
+     SITEMAP: el "mapa" del sitio para Google.
+     Lista las páginas que queremos que indexe. Hoy el sitio es de
+     una sola página (one-page), así que solo va la portada.
+     Si en el futuro agregamos páginas (blog, portafolio, etc.),
+     cada una se añade aquí como un <url> nuevo.
+     ══════════════════════════════════════════════════════════════ -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://advisual.cl/</loc>            <!-- La página principal -->
+        <lastmod>2026-10-22</lastmod>              <!-- Última fecha de cambio importante -->
+        <changefreq>monthly</changefreq>           <!-- Frecuencia típica de actualización -->
+        <priority>1.0</priority>                   <!-- Importancia máxima: es la portada -->
+    </url>
+</urlset>

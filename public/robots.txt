@@ -1,0 +1,10 @@
+# ══════════════════════════════════════════════════════════════
+# ROBOTS.TXT: las "reglas de la casa" para los buscadores.
+# Es el primer archivo que Google, Bing, etc. leen al visitarnos.
+# ══════════════════════════════════════════════════════════════
+
+User-agent: *        # La regla aplica a TODOS los buscadores
+Allow: /             # Pueden revisar e indexar todo el sitio (no ocultamos nada)
+
+# Le decimos dónde está el mapa del sitio para que indexe más rápido
+Sitemap: https://advisual.cl/sitemap.xml
