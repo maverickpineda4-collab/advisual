@@ -407,6 +407,19 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 .proyecto:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
 .proyecto.oculto { display: none; }    /* El JS agrega/quita esta clase al filtrar */
 
+/* Video PREVIEW estilo Netflix (lo crea el JS al pasar el mouse):
+   se monta sobre la miniatura y aparece/desaparece con un fundido */
+.proyecto__preview {
+    position: absolute;
+    inset: 0;                          /* Cubre exactamente toda la miniatura */
+    width: 100%; height: 100%;
+    object-fit: cover;                 /* Llena el marco sin deformar el video */
+    opacity: 0;                        /* Nace invisible: el fundido lo hace aparecer */
+    transition: opacity 0.4s ease;
+    pointer-events: none;              /* El clic siempre lo recibe la tarjeta (abre el modal) */
+}
+.proyecto__preview.visible { opacity: 1; }
+
 .proyecto__miniatura {
     aspect-ratio: 16 / 9;              /* Proporción de video: siempre rectangular 16:9 */
     display: grid;

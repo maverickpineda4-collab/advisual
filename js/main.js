@@ -111,6 +111,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ──────────────────────────────────────────────
+       6c. PREVIEW AL PASAR EL MOUSE (estilo Netflix)
+       Al posar el mouse sobre una tarjeta con video real,
+       reproducimos el video SILENCIADO y en bucle sobre la
+       miniatura; al salir, vuelve la imagen de portada.
+       Solo en dispositivos con mouse real (hover) y si el
+       usuario no pidió "reducir movimiento" en su sistema.
+       ────────────────────────────────────────────── */
+    const tieneMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reduceMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (tieneMouse && !reduceMovimiento) {
+        document.querySelectorAll(".proyecto[data-video]").forEach((tarjeta) => {
+            const miniatura = tarjeta.querySelector(".proyecto__miniatura");
+            if (!miniatura) return;
+
+            let video = null;        // El <video> se crea solo la PRIMERA vez que se hace hover
+            let temporizador = null; // Retraso para no descargar videos al pasar el mouse rápido
+
+            tarjeta.addEventListener("mouseenter", () => {
+                temporizador = setTimeout(() => {
+                    if (!video) {
+                        video = document.createElement("video");
+                        video.className = "proyecto__preview";
+                        video.muted = true;      // Mudo: los navegadores SOLO permiten autoplay sin sonido
+                        video.loop = true;       // Bucle infinito mientras el mouse esté encima
+                        video.playsInline = true;
+                        video.preload = "auto";  // Descarga progresiva (no espera el archivo completo)
+                        video.src = tarjeta.dataset.video; // El mismo video del visor modal
+                        miniatura.appendChild(video);
+                        // Cuando hay suficiente video cargado, aparece con un fundido suave
+                        video.addEventListener("canplay", () => video.classList.add("visible"));
+                    }
+                    video.play().catch(() => {}); // El catch evita errores si el navegador bloquea el play
+                    if (video.readyState >= 3) video.classList.add("visible"); // Ya estaba cargado de un hover anterior
+                }, 300); // 300 ms: si solo pasabas de largo, no gasta datos
+            });
+
+            tarjeta.addEventListener("mouseleave", () => {
+                clearTimeout(temporizador); // Cancela el preview si aún no partía
+                if (video) {
+                    video.pause();
+                    video.classList.remove("visible"); // Vuelve la portada con fundido
+                }
+            });
+        });
+    }
+
+    /* ──────────────────────────────────────────────
        7. FORMULARIO DE CONTACTO (doble vía)
        a) CORREO: cuando pongas tu ID de Formspree en el action
           del <form>, enviamos los datos por fetch (sin salir de
