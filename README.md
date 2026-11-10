@@ -53,7 +53,7 @@ Cada vez que guardes un cambio en VS Code, la página se recarga sola (hot reloa
 
 | Qué | Dónde | Estado |
 |---|---|---|
-| Número de WhatsApp | `index.html` y `js/main.js` | ✅ Configurado: +56 9 5333 4461 |
+| Número de WhatsApp | `index.html` y `js/main.js` | ✅ Configurado: +56 9 3111 8263 |
 | Instagram / YouTube | `index.html` (footer) | ✅ @advisualcl / @AdVisual-h1b |
 | Correo de contacto | `index.html` (sección contacto) | ✅ Configurado: contacto@advisual.cl |
 | Colores de marca | `css/styles.css` (arriba, en `:root`) | Edita `--acento` y `--acento-2` si quieres otros |

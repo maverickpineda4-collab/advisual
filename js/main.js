@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const texto = encodeURIComponent(
             `Hola Advisual 👋 Soy ${nombre} (${correo}). Me interesa: ${tipo}. ${mensaje}`
         );
-        const linkWhatsApp = `https://wa.me/56953334461?text=${texto}`;
+        const linkWhatsApp = `https://wa.me/56931118263?text=${texto}`;
 
         // ¿El action todavía tiene el texto de relleno "TU_ID"?
         const formularioSinConfigurar = formulario.action.includes("TU_ID");
