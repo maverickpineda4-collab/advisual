@@ -442,7 +442,6 @@ img, video { max-width: 100%; display: block; } /* Multimedia nunca se sale de s
 .proyecto__miniatura--g2 { background: linear-gradient(135deg, #22d3ee, #0e5a72); }
 .proyecto__miniatura--g3 { background: linear-gradient(135deg, #ff5c8a, #7a1f3d); }
 .proyecto__miniatura--g4 { background: linear-gradient(135deg, #f7b733, #8f5b00); }
-.proyecto__miniatura--g5 { background: linear-gradient(135deg, #43e97b, #0f5a38); }
 .proyecto__miniatura--g6 { background: linear-gradient(135deg, #b06cff, #41127a); }
 
 .proyecto__play {
